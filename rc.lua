@@ -13,6 +13,8 @@ require("debian.menu")
 -- For volume widget
 cardid  = "Intel"
 channel = "Master"
+-- channel = "Headphone"
+
 function volume (mode, widget)
     if mode == "update" then
         local status = io.popen("amixer -c " .. cardid .. " -- sget " .. channel):read("*all")
@@ -36,6 +38,16 @@ function volume (mode, widget)
     else
         awful.util.spawn("amixer -c " .. cardid .. " sset " .. channel .. " toggle")
         volume("update", widget)
+    end
+end
+
+function spotcmd (cmd)
+    if cmd == "next" then
+        awful.util.spawn("/home/ajclisso/Code/Scripts/PySpotifyInfo/spotify_control.py -c next")
+    elseif cmd == "prev" then
+        awful.util.spawn("/home/ajclisso/Code/Scripts/PySpotifyInfo/spotify_control.py -c previous")
+    elseif cmd == "play" then
+        awful.util.spawn("/home/ajclisso/Code/Scripts/PySpotifyInfo/spotify_control.py -c pp")
     end
 end
 
@@ -180,7 +192,7 @@ datewidget = widget({ type = "textbox" })
 cpuwidget = widget({ type = "textbox" })
 memwidget = widget({ type = "textbox" })
 
-vicious.register(datewidget, vicious.widgets.date, " %b%e, %I:%M ", 60)
+vicious.register(datewidget, vicious.widgets.date, " %b%e, %I:%M ", 10)
 vicious.register(cpuwidget, vicious.widgets.cpu, " $1%")
 vicious.register(memwidget, vicious.widgets.mem, "/$1%", 2)
 
@@ -342,10 +354,13 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end)
 )
--- These three for volume control
+-- Volume/Spotify control keybindings
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume",function () volume("up", pb_volume) end))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume",function  () volume("down", pb_volume) end))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute",function  () volume("mute", pb_volume) end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume",function () volume("down", pb_volume) end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute",function () volume("mute", pb_volume) end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioNext",function () spotcmd("next") end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioPrev",function () spotcmd("prev") end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioPlay",function () spotcmd("play") end))
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
