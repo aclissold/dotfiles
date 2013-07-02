@@ -1,0 +1,12 @@
+[user]
+	name = Andrew Clissold
+	email = ajclisso@oakland.edu
+[credential]
+    helper = cache --timeout=3600
+[core]
+	autocrlf = input
+	safecrlf = true
+[alias]
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
