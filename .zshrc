@@ -99,17 +99,17 @@ export PATH=$PATH:$GOPATH/src
 export PATH=$PATH:/home/ajclisso/Code/Scripts/PySpotifyInfo
 
 # Prompt format
-function spotify() {
-    echo `python ~/Code/Scripts/PySpotifyInfo/spotify_control.py -d title artist -m " ~ "`
-}
+# function spotify() {
+#     echo `python ~/Code/Scripts/PySpotifyInfo/spotify_control.py -d title artist -m " ~ "`
+# }
 precmd() {
     PROMPT='%B%~%b$(git_super_status) %# '
-    if [[ $(spotify) != "SPOTIFY"  ]]
-    then
-        RPROMPT="$(spotify)"
-    else
-        RPROMPT=""
-    fi
+#     if [[ $(spotify) != "SPOTIFY"  ]]
+#     then
+#         RPROMPT="$(spotify)"
+#     else
+#         RPROMPT=""
+#     fi
 }
 
 # Default text editor
