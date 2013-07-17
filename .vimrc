@@ -11,15 +11,20 @@ set softtabstop=4
 " Highlight the last searched term
 set hlsearch
 
+" 'g' flag for :%s on by default
+set gdefault
+
 " Custom status bar
 " set statusline=%F%m%r%h%w\ [%l,%v][%p%%]\ [%L] 
 " set laststatus=2
 
 " For GitGutter
 highlight clear SignColumn
-highlight GitGutterAdd cterm=bold ctermfg=white
-highlight GitGutterChange cterm=bold ctermfg=yellow
-highlight GitGutterDelete cterm=bold ctermfg=cyan
+highlight GitGutterAdd ctermfg=40 cterm=bold
+highlight GitGutterChange ctermfg=178 cterm=bold
+highlight GitGutterDelete ctermfg=124 cterm=bold
+
+colorscheme symfony_modified
 
 " Smooth scrolling
 function SmoothScroll(up)
