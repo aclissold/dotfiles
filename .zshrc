@@ -8,15 +8,13 @@ setopt histignorealldups sharehistory
 
 # Use Vim keybindings
 bindkey -v
+bindkey '\e[3~' delete-char
+bindkey '^R' history-incremental-search-backward
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-
-# Use modern completion system
-autoload -Uz compinit
-compinit
 
 # Aliases
 alias ls='ls --color=auto'
@@ -38,8 +36,8 @@ alias gh='git hist'
 alias lock='i3lock -t -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/Largo.PNG'
 
 alias grep='grep --color=auto'
-cdls() { cd "$@" && ls; }
-alias cd='cdls'
+
+cd() { builtin cd "$@"; ls }
 
 alias splay='spotify_control.py -c pp'
 alias spause='spotify_control.py -c pp'
@@ -47,26 +45,14 @@ alias snext='spotify_control.py -c next'
 alias sprevious='spotify_control.py -c previous'
 alias sstop='spotify_control.py -c stop'
 
+alias java7='/opt/jdk1.7.0_21/bin/java'
+alias javac7='/opt/jdk1.7.0_21/bin/javac'
 alias javadoc7='/opt/jdk1.7.0_21/bin/javadoc'
-
-alias portlet='cd ~/Code/portlet_degreeprogress/src/main/java/org/jasig/portlet'
 
 alias secs='ssh ajclisso@login.secs.oakland.edu'
 alias tomcat='/etc/init.d/uportal'
-alias uportal='cd /home/ajclisso/uportal/uPortal'
-alias builduportal='/home/ajclisso/Code/Scripts/builduportal.sh'
-alias buildportlets='/home/ajclisso/Code/Scripts/buildportlets.sh'
-alias redo='/home/ajclisso/Code/Scripts/redo.sh'
-
-# Key bindings for zsh-history-substring-search
-for keycode in '[' 'O'; do
-  bindkey "^[${keycode}A" history-substring-search-up
-  bindkey "^[${keycode}B" history-substring-search-down
-done
-unset keycode
-
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+alias sdf='cd ..'
+# alias redo='/home/ajclisso/Code/Scripts/redo.sh'
 
 # Environment variables
 export M2_HOME=/home/ajclisso/uportal/maven
@@ -115,8 +101,9 @@ precmd() {
 # Default text editor
 export EDITOR=/usr/bin/vim
 
-# Enable Vim-bindings
-bindkey -v
+# Use modern completion system
+autoload -Uz compinit
+compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -136,7 +123,31 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# Functions
+function yank {
+    touch ~/.clipboard
+    for i in "$@"; do
+      if [[ $i != /* ]]; then i=$PWD/$i; fi
+      i=${i//\\/\\\\}; i=${i//$'\n'/$'\\\n'}
+      printf '%s\n' "$i"
+    done >> ~/.clipboard
+}
+
+function put {
+    while IFS= read src; do
+      cp -Rdp "$src" .
+    done < ~/.clipboard
+    rm ~/.clipboard
+}
+
+function del {
+    mv "$@" ~/.trash
+}
+
+function empty-trash {
+    rm -rf ~/.trash/*
+}
+
 # Plugin sourcing (order matters for some)
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
