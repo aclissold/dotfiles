@@ -96,7 +96,8 @@ end
 beautiful.init(awful.util.getdir("config") .. "/themes/red/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+-- terminal = "x-terminal-emulator"
+terminal = "xterm -T 'Terminal' -fa 'Deja Vu Sans Mono' -fs '11'"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -130,7 +131,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "Work", "IM", "News", "Temp" }, s, layouts[1])
+    tags[s] = awful.tag({ "1", "2", "3", "4" }, s, layouts[1])
 end
 -- }}}
 
@@ -210,7 +211,7 @@ datewidget = widget({ type = "textbox" })
 cpuwidget = widget({ type = "textbox" })
 memwidget = widget({ type = "textbox" })
 
-vicious.register(datewidget, vicious.widgets.date, " %a %b%e, %I:%M ", 10)
+vicious.register(datewidget, vicious.widgets.date, " %a %b %e, %I:%M ", 10)
 vicious.register(cpuwidget, vicious.widgets.cpu, " $1%")
 vicious.register(memwidget, vicious.widgets.mem, "/$1%", 2)
 
@@ -376,7 +377,7 @@ globalkeys = awful.util.table.join(
 -- Volume/Spotify control keybindings
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume",function() volume("up", pb_volume) end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume",function() volume("down", pb_volume) end))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute",function() volume("mute", pb_volume) end))
+-- globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute",function() volume("mute", pb_volume) end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioNext",function() spotcmd("next") end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioPrev",function() spotcmd("prev") end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioPlay",function() spotcmd("play") end))
