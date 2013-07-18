@@ -21,18 +21,6 @@ alias ls='ls --color=auto'
 
 alias py=python3.2
 
-alias gs='git status'
-alias ga='git add'
-alias gb='git branch'
-alias gc='git commit'
-alias gd='git diff'
-alias gco='git checkout'
-alias gp='git push'
-alias gpu='git pull'
-alias gk='gitk --all&'
-alias gx='gitx --all'
-alias gh='git hist'
-
 alias lock='i3lock -t -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/Largo.PNG'
 
 alias grep='grep --color=auto'
