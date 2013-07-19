@@ -1,0 +1,4 @@
+# Enable syntax completion in interpreter
+import readline
+import rlcompleter
+readline.parse_and_bind('tab: complete')
