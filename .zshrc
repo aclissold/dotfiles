@@ -33,9 +33,9 @@ alias snext='spotify_control.py -c next'
 alias sprevious='spotify_control.py -c previous'
 alias sstop='spotify_control.py -c stop'
 
-alias java7='/opt/jdk1.7.0_21/bin/java'
-alias javac7='/opt/jdk1.7.0_21/bin/javac'
-alias javadoc7='/opt/jdk1.7.0_21/bin/javadoc'
+alias java7='/opt/jdk1.7.0_25/bin/java'
+alias javac7='/opt/jdk1.7.0_25/bin/javac'
+alias javadoc7='/opt/jdk1.7.0_25/bin/javadoc'
 
 alias secs='ssh ajclisso@login.secs.oakland.edu'
 alias tomcat='/etc/init.d/uportal'
@@ -71,6 +71,9 @@ export GOPATH=/home/ajclisso/Code/Go/
 export PATH=$PATH:$GOPATH/src
 
 export PATH=$PATH:/home/ajclisso/Code/Scripts/PySpotifyInfo
+
+# Enable Python interpreter tab-complete
+export PYTHONSTARTUP=~/.pythonrc
 
 # Prompt format
 # function spotify() {
