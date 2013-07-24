@@ -16,6 +16,7 @@ vicious = require("vicious")
 -- Startup commands
 awful.util.spawn_with_shell("xrandr --auto --output LVDS1 --mode 1440x900 --left-of VGA1 --output VGA1 --mode 1280x1024")
 awful.util.spawn_with_shell("xset r rate 200 60")
+awful.util.spawn_with_shell("xrdb -merge .Xdefaults")
 awful.util.spawn_with_shell("pkill python")
 awful.util.spawn_with_shell("python ~/Code/Python/Python/scroll.py &")
 
