@@ -40,6 +40,7 @@ alias javadoc7='/opt/jdk1.7.0_25/bin/javadoc'
 alias secs='ssh ajclisso@login.secs.oakland.edu'
 alias tomcat='/etc/init.d/uportal'
 alias sdf='cd ..'
+alias minify='/home/ajclisso/Code/Scripts/minify.sh'
 # alias redo='/home/ajclisso/Code/Scripts/redo.sh'
 
 # Environment variables
@@ -135,6 +136,13 @@ function yank {
 function put {
     while IFS= read src; do
       cp -Rdp "$src" .
+    done < ~/.clipboard
+    rm ~/.clipboard
+}
+
+function putrm {
+    while IFS= read src; do
+      mv "$src" .
     done < ~/.clipboard
     rm ~/.clipboard
 }
