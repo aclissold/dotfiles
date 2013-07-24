@@ -8,6 +8,13 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
+" Golang plugins
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+
 " Highlight the last searched term
 set hlsearch
 
