@@ -19,7 +19,7 @@ HISTFILE=~/.zsh_history
 # Aliases
 alias ls='ls --color=auto'
 
-alias py=python3.2
+alias py=python3.3
 
 alias lock='i3lock -t -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/Largo.PNG'
 
@@ -79,6 +79,14 @@ export PYTHONSTARTUP=~/.pythonrc
 # function spotify() {
 #     echo `python ~/Code/Scripts/PySpotifyInfo/spotify_control.py -d title artist -m " ~ "`
 # }
+
+function chrome {
+    for i in "$@"; do
+        google-chrome $i
+    done
+    rm libpeerconnection.log
+}
+
 precmd() {
     PROMPT='%B%~%b$(git_super_status) %# '
 #     if [[ $(spotify) != "SPOTIFY"  ]]
