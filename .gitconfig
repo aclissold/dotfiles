@@ -8,5 +8,6 @@
 	safecrlf = true
 [alias]
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    amend = commit --amend -C HEAD
 	type = cat-file -t
 	dump = cat-file -p
