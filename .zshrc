@@ -27,6 +27,14 @@ alias grep='grep --color=auto'
 
 cd() { builtin cd "$@"; ls }
 
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gco='git checkout '
+alias gd='git diff'
+alias gp='git push'
+alias gs='git status '
+
 alias splay='spotify_control.py -c pp'
 alias spause='spotify_control.py -c pp'
 alias snext='spotify_control.py -c next'

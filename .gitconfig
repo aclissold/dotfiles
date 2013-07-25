@@ -7,7 +7,9 @@
 	autocrlf = input
 	safecrlf = true
 [alias]
-	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	hist = log --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(bold)%s%C(green)%d%C(reset) %C(red)[%an]' --graph --date=short
     amend = commit --amend -C HEAD
 	type = cat-file -t
 	dump = cat-file -p
+[color]
+	ui = true
