@@ -58,6 +58,8 @@ alias gp='git push'
 alias gpu='git pull'
 alias gs='git status '
 
+alias get='git clone'
+
 # Java 7
 alias java7='/opt/jdk1.7.0_25/bin/java'
 alias javac7='/opt/jdk1.7.0_25/bin/javac'
