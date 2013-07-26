@@ -1,32 +1,53 @@
-# Set up the prompt
-
-#autoload -Uz promptinit 
-#promptinit
-#prompt adam1
-
 setopt histignorealldups sharehistory
 
-# Use Vim keybindings
+###############
+# Keybindings #
+###############
+
+# Vim keybindings in Zsh
 bindkey -v
 bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# zsh-history-substring-search
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+###########
+# History #
+###########
+
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# Aliases
-alias ls='ls --color=auto'
+###########
+# Aliases #
+###########
 
-alias py=python3.3
-
-alias lock='i3lock -t -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/Largo.PNG'
-
-alias grep='grep --color=auto'
-
+# cdls
 cd() { builtin cd "$@"; ls }
+# Python<3
+alias py=python3.3
+# Colored ls
+alias ls='ls --color=auto'
+# Colored grep
+alias grep='grep --color=auto'
+# Quick up-a-level alias
+alias sdf='cd ..'
+# SSH
+alias secs='ssh ajclisso@login.secs.oakland.edu'
+# Tomcat start/stop script
+alias tomcat='/etc/init.d/uportal'
+# My minification script
+alias minify='$HOME/ajclisso/Code/Scripts/minify.sh'
+# Lockscreen command
+alias lock='i3lock -t -i $HOME/Dropbox/Work/Pictures/Backgrounds/Largo.PNG'
 
+# Git
 alias ga='git add '
 alias gb='git branch '
 alias gc='git commit'
@@ -36,23 +57,14 @@ alias gh='git hist'
 alias gp='git push'
 alias gs='git status '
 
-alias splay='spotify_control.py -c pp'
-alias spause='spotify_control.py -c pp'
-alias snext='spotify_control.py -c next'
-alias sprevious='spotify_control.py -c previous'
-alias sstop='spotify_control.py -c stop'
-
+# Java 7
 alias java7='/opt/jdk1.7.0_25/bin/java'
 alias javac7='/opt/jdk1.7.0_25/bin/javac'
 alias javadoc7='/opt/jdk1.7.0_25/bin/javadoc'
 
-alias secs='ssh ajclisso@login.secs.oakland.edu'
-alias tomcat='/etc/init.d/uportal'
-alias sdf='cd ..'
-alias minify='/home/ajclisso/Code/Scripts/minify.sh'
-# alias redo='/home/ajclisso/Code/Scripts/redo.sh'
-
-# Environment variables
+#########################
+# Environment variables #
+#########################
 export M2_HOME=/home/ajclisso/uportal/maven
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
@@ -65,7 +77,7 @@ export PATH=$PATH:$ANT_HOME/bin
 
 export TOMCAT_HOME=/home/ajclisso/uportal/tomcat
 export PATH=$PATH:$TOMCAT_HOME
-export JAVA_OPTS="-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m"
+export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
 
 export GROOVY_HOME=/home/ajclisso/uportal/groovy
 export PATH=$PATH:$GROOVY_HOME/bin
@@ -81,15 +93,38 @@ export GOPATH=/home/ajclisso/Code/Go/
 export PATH=$PATH:$GOPATH/src
 
 export PATH=$PATH:/usr/local/ch/bin
+#
+#############
+# Functions #
+#############
 
-# Enable Python interpreter tab-complete
-export PYTHONSTARTUP=~/.pythonrc
+# "Copy" file to ~/.clipboard
+function yank {
+    touch ~/.clipboard
+    for i in "$@"; do
+      if [[ $i != /* ]]; then i=$PWD/$i; fi
+      i=${i//\\/\\\\}; i=${i//$'\n'/$'\\\n'}
+      printf '%s\n' "$i"
+    done >> ~/.clipboard
+}
 
-# Prompt format
-# function spotify() {
-#     echo `python ~/Code/Scripts/PySpotifyInfo/spotify_control.py -d title artist -m " ~ "`
-# }
+# "Paste" file from ~/.clipboard
+function put {
+    while IFS= read src; do
+      cp -Rdp "$src" .
+    done < ~/.clipboard
+    rm ~/.clipboard
+}
 
+# Pretend "copy" was "cut"
+function putrm {
+    while IFS= read src; do
+      mv "$src" .
+    done < ~/.clipboard
+    rm ~/.clipboard
+}
+
+# Open files in Chrome without generating libpeerconnection.log
 function chrome {
     for i in "$@"; do
         google-chrome $i
@@ -97,15 +132,26 @@ function chrome {
     rm libpeerconnection.log
 }
 
-precmd() {
-    PROMPT='%B%~%b$(git_super_status) %# '
-#     if [[ $(spotify) != "SPOTIFY"  ]]
-#     then
-#         RPROMPT="$(spotify)"
-#     else
-#         RPROMPT=""
-#     fi
+# Move file or directory to ~/.trash
+function del {
+    mv "$@" ~/.trash
 }
+
+# Yup
+function empty-trash {
+    rm -rf ~/.trash/*
+}
+
+
+#################
+# Miscellaneous #
+#################
+
+# Set the prompt!
+precmd() { PROMPT='%B%~%b$(git_super_status) %# ' }
+
+# Enable Python interpreter tab-complete
+export PYTHONSTARTUP=~/.pythonrc
 
 # Default text editor
 export EDITOR=/usr/bin/vim
@@ -132,38 +178,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# Functions
-function yank {
-    touch ~/.clipboard
-    for i in "$@"; do
-      if [[ $i != /* ]]; then i=$PWD/$i; fi
-      i=${i//\\/\\\\}; i=${i//$'\n'/$'\\\n'}
-      printf '%s\n' "$i"
-    done >> ~/.clipboard
-}
-
-function put {
-    while IFS= read src; do
-      cp -Rdp "$src" .
-    done < ~/.clipboard
-    rm ~/.clipboard
-}
-
-function putrm {
-    while IFS= read src; do
-      mv "$src" .
-    done < ~/.clipboard
-    rm ~/.clipboard
-}
-
-function del {
-    mv "$@" ~/.trash
-}
-
-function empty-trash {
-    rm -rf ~/.trash/*
-}
-
 # Plugin sourcing (order matters for some)
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
