@@ -55,6 +55,7 @@ alias gco='git checkout '
 alias gd='git diff'
 alias gh='git hist'
 alias gp='git push'
+alias gpu='git pull'
 alias gs='git status '
 
 # Java 7
