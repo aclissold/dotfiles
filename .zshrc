@@ -58,8 +58,6 @@ alias gp='git push'
 alias gpu='git pull'
 alias gs='git status '
 
-alias get='git clone'
-
 # Java 7
 alias java7='/opt/jdk1.7.0_25/bin/java'
 alias javac7='/opt/jdk1.7.0_25/bin/javac'
@@ -125,6 +123,16 @@ function putrm {
       mv "$src" .
     done < ~/.clipboard
     rm ~/.clipboard
+}
+
+# Strip git clone of boilerplate
+function clone {
+    if [[ $# != 1 ]]
+    then
+        echo 'Usage: get username/repository'
+    else
+        git clone https://github.com/$1
+    fi
 }
 
 # Open files in Chrome without generating libpeerconnection.log
