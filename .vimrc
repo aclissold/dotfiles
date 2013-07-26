@@ -8,6 +8,10 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
+" Persistent undo
+set undofile
+set undodir=$HOME/.vimundo/
+
 " Golang plugins
 filetype off
 filetype plugin indent off
