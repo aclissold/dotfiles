@@ -80,7 +80,7 @@ export PATH=$PATH:$GOROOT/bin
 export GOPATH=/home/ajclisso/Code/Go/
 export PATH=$PATH:$GOPATH/src
 
-export PATH=$PATH:/home/ajclisso/Code/Scripts/PySpotifyInfo
+export PATH=$PATH:/usr/local/ch/bin
 
 # Enable Python interpreter tab-complete
 export PYTHONSTARTUP=~/.pythonrc
