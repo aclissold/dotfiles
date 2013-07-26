@@ -29,7 +29,7 @@ HISTFILE=~/.zsh_history
 ###########
 
 # cdls
-cd() { builtin cd "$@"; ls }
+cd() { builtin cd "$@"; ls --color=auto }
 # Python<3
 alias py=python3.3
 # Colored ls
@@ -129,9 +129,9 @@ function putrm {
 function clone {
     if [[ $# != 1 ]]
     then
-        echo 'Usage: get username/repository'
+        echo 'Usage: clone username/repository'
     else
-        git clone https://github.com/$1
+        git clone git@github.com:$1
     fi
 }
 
