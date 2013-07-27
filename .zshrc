@@ -53,7 +53,7 @@ alias secs='ssh ajclisso@login.secs.oakland.edu'
 # Tomcat start/stop script
 alias tomcat='/etc/init.d/uportal'
 # My minification script
-alias minify='$HOME/ajclisso/Code/Scripts/minify.sh'
+alias minify='$HOME/Code/Scripts/minify.sh'
 # Lockscreen command
 alias lock='i3lock -t -i $HOME/Dropbox/Work/Pictures/Backgrounds/Largo.PNG'
 
@@ -158,7 +158,7 @@ export PYTHONPATH='/usr/bin/python3.2'
 
 export GOROOT=/opt/go/
 export PATH=$PATH:$GOROOT/bin
-export GOPATH=/home/ajclisso/Code/Go/
+export GOPATH=$HOME/Code/Go/
 export PATH=$PATH:$GOPATH/src
 
 export PATH=$PATH:/usr/local/ch/bin
