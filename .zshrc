@@ -156,7 +156,8 @@ export PATH=$PATH:$PGDATA/bin
 
 export PYTHONPATH='/usr/bin/python3.2'
 
-export GOROOT=/opt/go/
+# export GOROOT=/opt/go/
+export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/Code/Go/
 export PATH=$PATH:$GOPATH/src
