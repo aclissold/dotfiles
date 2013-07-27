@@ -33,7 +33,12 @@ cd() { builtin cd "$@"; ls --color=auto }
 # Python<3
 alias py=python3.3
 # Colored ls
-alias ls='ls --color=auto'
+if [[ `uname` == 'Darwin' ]]
+then
+    alias ls='ls -G'
+else
+    alias ls='ls --color=auto'
+fi
 # Colored grep
 alias grep='grep --color=auto'
 # Quick up-a-level alias
@@ -63,38 +68,6 @@ alias java7='/opt/jdk1.7.0_25/bin/java'
 alias javac7='/opt/jdk1.7.0_25/bin/javac'
 alias javadoc7='/opt/jdk1.7.0_25/bin/javadoc'
 
-#########################
-# Environment variables #
-#########################
-export M2_HOME=/home/ajclisso/uportal/maven
-export M2=$M2_HOME/bin
-export PATH=$M2:$PATH
-
-export JAVA_HOME=/opt/jdk1.6.0_45
-export PATH=$JAVA_HOME/bin:$PATH
-
-export ANT_HOME=/home/ajclisso/uportal/ant
-export PATH=$PATH:$ANT_HOME/bin
-
-export TOMCAT_HOME=/home/ajclisso/uportal/tomcat
-export PATH=$PATH:$TOMCAT_HOME
-export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
-
-export GROOVY_HOME=/home/ajclisso/uportal/groovy
-export PATH=$PATH:$GROOVY_HOME/bin
-
-export PGDATA=/opt/PostgreSQL/9.2/
-export PATH=$PATH:$PGDATA/bin
-
-export PYTHONPATH='/usr/bin/python3.2'
-
-export GOROOT=/opt/go/
-export PATH=$PATH:$GOROOT/bin
-export GOPATH=/home/ajclisso/Code/Go/
-export PATH=$PATH:$GOPATH/src
-
-export PATH=$PATH:/usr/local/ch/bin
-#
 #############
 # Functions #
 #############
@@ -153,6 +126,37 @@ function empty-trash {
     rm -rf ~/.trash/*
 }
 
+#########################
+# Environment variables #
+#########################
+export M2_HOME=/home/ajclisso/uportal/maven
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+
+export JAVA_HOME=/opt/jdk1.6.0_45
+export PATH=$JAVA_HOME/bin:$PATH
+
+export ANT_HOME=/home/ajclisso/uportal/ant
+export PATH=$PATH:$ANT_HOME/bin
+
+export TOMCAT_HOME=/home/ajclisso/uportal/tomcat
+export PATH=$PATH:$TOMCAT_HOME
+export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
+
+export GROOVY_HOME=/home/ajclisso/uportal/groovy
+export PATH=$PATH:$GROOVY_HOME/bin
+
+export PGDATA=/opt/PostgreSQL/9.2/
+export PATH=$PATH:$PGDATA/bin
+
+export PYTHONPATH='/usr/bin/python3.2'
+
+export GOROOT=/opt/go/
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=/home/ajclisso/Code/Go/
+export PATH=$PATH:$GOPATH/src
+
+export PATH=$PATH:/usr/local/ch/bin
 
 #################
 # Miscellaneous #
