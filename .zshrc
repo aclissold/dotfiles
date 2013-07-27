@@ -29,18 +29,23 @@ HISTFILE=~/.zsh_history
 ###########
 
 # cdls
-cd() { builtin cd "$@"; ls --color=auto }
+if [[ `uname` == 'Darwin' ]]; then
+    cd() { builtin cd "$@"; ls -G }
+else
+    cd() { builtin cd "$@"; ls --color=auto }
+fi
 # Python<3
 alias py=python3.3
-# Colored ls
-if [[ `uname` == 'Darwin' ]]
-then
+# Colors!
+if [[ `uname` == 'Darwin' ]]; then
     alias ls='ls -G'
 else
     alias ls='ls --color=auto'
 fi
-# Colored grep
+
 alias grep='grep --color=auto'
+
+alias tree='tree -C'
 # Quick up-a-level alias
 alias sdf='cd ..'
 # SSH
@@ -85,7 +90,7 @@ function yank {
 # "Paste" file from ~/.clipboard
 function put {
     while IFS= read src; do
-      cp -Rdp "$src" .
+      cp -Rp "$src" .
     done < ~/.clipboard
     rm ~/.clipboard
 }
@@ -158,6 +163,8 @@ export PATH=$PATH:$GOPATH/src
 
 export PATH=$PATH:/usr/local/ch/bin
 
+export PATH=$PATH:/usr/bin
+
 #################
 # Miscellaneous #
 #################
@@ -180,7 +187,7 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
+# eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
