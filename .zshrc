@@ -160,7 +160,7 @@ export PYTHONPATH='/usr/bin/python3.2'
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/Code/Go/
-export PATH=$PATH:$GOPATH/src
+export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:/usr/local/ch/bin
 
