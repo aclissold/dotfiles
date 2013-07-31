@@ -8,6 +8,10 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
+" Dynamic titles
+set title
+set titleold=Terminal
+
 " Persistent undo
 set undofile
 set undodir=$HOME/.vimundo/
