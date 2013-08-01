@@ -6,10 +6,8 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
-
 -- Load Debian menu entries
 require("debian.menu")
-
 -- Load Vicious widget library
 vicious = require("vicious")
 
@@ -20,7 +18,7 @@ channel = "Master"
 
 -- For i3lock keybinding
 function lock()
-    awful.util.spawn_with_shell("i3lock -t -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.jpg")
+    awful.util.spawn_with_shell("i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png")
 end
 
 function volume (mode, widget)
@@ -166,6 +164,10 @@ pb_volume:bar_properties_set("vol",
 
 volume("update", pb_volume)
 
+-- My Vicious widgets
+spotwidget = widget({ type = "textbox" })
+spotwidget.text = ""
+
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
@@ -248,6 +250,7 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         mytextclock,
         s == 1 and mysystray or nil,
+        s == 1 and spotwidget or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
@@ -325,7 +328,7 @@ globalkeys = awful.util.table.join(
 -- Volume widget keybindings
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume",function() volume("up", pb_volume) end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume",function() volume("down", pb_volume) end))
--- globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute",function() volume("mute", pb_volume) end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute",function() volume("mute", pb_volume) end))
 
 -- i3lock keybinding
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86Eject", function() lock() end))
@@ -451,3 +454,6 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 awful.hooks.timer.register(10, function() volume("update", pb_volume) end)
+
+awful.util.spawn_with_shell("pidgin &")
+awful.util.spawn_with_shell("python3 ~/Code/Python/Python/scroll.py &")
