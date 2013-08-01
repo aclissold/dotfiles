@@ -105,12 +105,7 @@ function putrm {
 
 # Strip git clone of boilerplate
 function clone {
-    if [[ $# != 1 ]]
-    then
-        echo 'Usage: clone username/repository'
-    else
-        git clone git@github.com:$1
-    fi
+    git clone git@github.com:$@
 }
 
 # Open files in Chrome without generating libpeerconnection.log
@@ -138,7 +133,7 @@ export M2_HOME=/home/ajclisso/uportal/maven
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 
-export JAVA_HOME=/opt/jdk1.6.0_45
+export JAVA_HOME=/usr/lib/jvm/default-java
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ANT_HOME=/home/ajclisso/uportal/ant
