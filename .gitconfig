@@ -1,6 +1,5 @@
 [user]
 	name = Andrew Clissold
-	email = ajclisso@oakland.edu
 [credential]
     helper = cache --timeout=3600
 [core]
