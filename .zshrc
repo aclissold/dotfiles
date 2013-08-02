@@ -50,8 +50,9 @@ alias tree='tree -C'
 alias sdf='cd ..'
 # SSH
 alias secs='ssh ajclisso@login.secs.oakland.edu'
-# Tomcat start/stop script
+# Tomcat start/stop/restart script and catalina.out tailing
 alias tomcat='/etc/init.d/uportal'
+alias cattail='rainbowize tail -f $TOMCAT_HOME/logs/catalina.out'
 # My minification script
 alias minify='$HOME/Code/Scripts/minify.sh'
 # Lockscreen command
