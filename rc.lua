@@ -14,6 +14,7 @@ vicious = require("vicious")
 -- For volume widget
 cardid = 0
 channel = "Master"
+muted = false
 -- channel = "Headphone"
 
 -- For i3lock keybinding
@@ -41,10 +42,29 @@ function volume (mode, widget)
    elseif mode == "down" then
        awful.util.spawn("amixer -q -c " .. cardid .. " sset " .. channel .. " 9%-")
        volume("update", widget)
-   else
-       awful.util.spawn("amixer -c " .. cardid .. " sset " .. channel .. " toggle")
-       volume("update", widget)
+   elseif mode == "mute" then
+       if muted then
+           awful.util.spawn("amixer -q -c " .. cardid .. " sset " .. "Master" .. " toggle")
+           os.execute("sleep " .. tonumber(0.1))
+           awful.util.spawn("amixer -q -c " .. cardid .. " sset " .. "Headphone" .. " toggle")
+           muted = false
+           volume("update", widget)
+        else
+           awful.util.spawn("amixer -q -c " .. cardid .. " sset " .. "Master" .. " toggle")
+           muted = true
+           volume("update", widget)
+       end
    end
+end
+
+function spotcmd(cmd)
+    if cmd == "next" then
+        awful.util.spawn("/home/ajclisso/Code/Python/PySpotifyInfo/spotify_control.py -c next")
+    elseif cmd == "prev" then
+        awful.util.spawn("/home/ajclisso/Code/Python/PySpotifyInfo/spotify_control.py -c previous")
+    elseif cmd == "play" then
+        awful.util.spawn("/home/ajclisso/Code/Python/PySpotifyInfo/spotify_control.py -c pp")
+    end 
 end
 
 -- {{{ Error handling
@@ -77,8 +97,8 @@ end
 beautiful.init(awful.util.getdir("config") .. "/themes/red/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
--- terminal = "x-terminal-emulator"
-terminal = "xterm -fg white -bg black -T 'Terminal' -fa 'Deja Vu Sans Mono' -fs '11'"
+terminal = "x-terminal-emulator"
+-- terminal = "xterm -fg white -bg black -T 'Terminal' -fa 'Deja Vu Sans Mono' -fs '11'"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -325,13 +345,16 @@ globalkeys = awful.util.table.join(
               end)
 )
 
--- Volume widget keybindings
+-- Audio keybindings
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume",function() volume("up", pb_volume) end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume",function() volume("down", pb_volume) end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute",function() volume("mute", pb_volume) end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioNext",function() spotcmd("next") end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioPrev",function() spotcmd("prev") end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioPlay",function() spotcmd("play") end))
 
 -- i3lock keybinding
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86Eject", function() lock() end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86Launch6", function() lock() end))
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
