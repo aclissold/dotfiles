@@ -130,12 +130,18 @@ function empty-trash {
 #########################
 # Environment variables #
 #########################
-export M2_HOME=/home/ajclisso/uportal/maven
+if [[ `uname` == 'Darwin' ]]; then
+    export M2_HOME=/usr/share/maven
+else
+    export M2_HOME=/home/ajclisso/uportal/maven
+fi
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 
-export JAVA_HOME=/usr/lib/jvm/default-java
-export PATH=$JAVA_HOME/bin:$PATH
+if [[ `uname` != 'Darwin' ]]; then
+    export JAVA_HOME=/usr/lib/jvm/default-java
+    export PATH=$JAVA_HOME/bin:$PATH
+fi
 
 export ANT_HOME=/home/ajclisso/uportal/ant
 export PATH=$PATH:$ANT_HOME/bin
@@ -198,6 +204,8 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Plugin sourcing (order matters for some)
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ `uname` != 'Darwin' ]]; then
+    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 source ~/.dotfiles/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
