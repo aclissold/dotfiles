@@ -8,6 +8,9 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
+" Restore cursor upon re-opening a file (doesn't work on single-line files)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " Dynamic titles
 set title
 set titleold=Terminal
@@ -32,6 +35,9 @@ set gdefault
 " Custom status bar
 " set statusline=%F%m%r%h%w\ [%l,%v][%p%%]\ [%L] 
 " set laststatus=2
+"
+" Enable Pathogen (https://github.com/tpope/vim-pathogen)
+execute pathogen#infect()
 
 " For GitGutter
 highlight clear SignColumn
