@@ -109,6 +109,23 @@ function clone {
     git clone git@github.com:$@
 }
 
+# Usage: build [(portlet)|uportal]
+function build {
+    cwd=$(pwd)
+    builtin cd ~/uportal/myPortal
+    for arg in "$@"
+    do
+        if [[ $arg == "uportal" ]]; then
+            tomcat stop
+            groovy -Dbuild.portlets.skip=true build.groovy
+            tomcat start
+        else
+            groovy -Dbuild.target.portlet=$arg build.groovy
+        fi
+    done
+    builtin cd $cwd
+}
+
 # Open files in Chrome without generating libpeerconnection.log
 function chrome {
     for i in "$@"; do
@@ -123,7 +140,7 @@ function del {
 }
 
 # Yup
-function empty-trash {
+function emptytrash {
     rm -rf ~/.trash/*
 }
 
