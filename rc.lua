@@ -97,8 +97,8 @@ end
 beautiful.init(awful.util.getdir("config") .. "/themes/red/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
--- terminal = "xterm -fg white -bg black -T 'Terminal' -fa 'Deja Vu Sans Mono' -fs '11'"
+-- terminal = "x-terminal-emulator"
+terminal = "xterm -fg white -bg black -T 'Terminal' -fa 'Deja Vu Sans Mono' -fs '11'"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
