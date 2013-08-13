@@ -11,6 +11,9 @@ set softtabstop=4
 " Restore cursor upon re-opening a file (doesn't work on single-line files)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Auto-complete shortcut -> phrase
+iabbrev sout System.out.println(
+
 " Dynamic titles
 set title
 set titleold=Terminal
@@ -25,9 +28,6 @@ filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
 filetype plugin indent on
 syntax on
-
-" Highlight the last searched term
-set hlsearch
 
 " 'g' flag for :%s on by default
 set gdefault
