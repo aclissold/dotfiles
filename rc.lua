@@ -184,6 +184,21 @@ pb_volume:bar_properties_set("vol",
 
 volume("update", pb_volume)
 
+-- CPU usage widget
+cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu, " $1%")
+
+-- Memory usage progressbar widget
+memwidget = awful.widget.progressbar()
+memwidget:set_width(8)
+memwidget:set_height(25)
+memwidget:set_vertical(true)
+memwidget:set_background_color("#494B4F")
+memwidget:set_border_color(nil)
+memwidget:set_color("#AECF96")
+memwidget:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
+vicious.register(memwidget, vicious.widgets.mem, "$1", 2)
+
 -- My Vicious widgets
 spotwidget = widget({ type = "textbox" })
 spotwidget.text = ""
@@ -262,13 +277,14 @@ for s = 1, screen.count() do
         {
             mylauncher,
             pb_volume,
-            -- pb_volume,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
+        s == 2 and memwidget or nil,
         mylayoutbox[s],
-        mytextclock,
+        s == 2 and mytextclock or nil,
+        s == 2 and cpuwidget or nil,
         s == 1 and mysystray or nil,
         s == 1 and spotwidget or nil,
         mytasklist[s],
