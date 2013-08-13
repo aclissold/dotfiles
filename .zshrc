@@ -171,7 +171,6 @@ export PATH=$PATH:$ANT_HOME/bin
 
 export TOMCAT_HOME=/home/ajclisso/uportal/tomcat
 export PATH=$PATH:$TOMCAT_HOME
-export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
 
 export GROOVY_HOME=/home/ajclisso/uportal/groovy
 export PATH=$PATH:$GROOVY_HOME/bin
@@ -179,24 +178,21 @@ export PATH=$PATH:$GROOVY_HOME/bin
 export PGDATA=/opt/PostgreSQL/9.2/
 export PATH=$PATH:$PGDATA/bin
 
-export PYTHONPATH='/usr/bin/python3.2'
+export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
 
-# export GOROOT=/opt/go/
-export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin
+export GOROOT=/usr/local/go/
 export GOPATH=$HOME/Code/Go/
-export PATH=$PATH:$GOPATH/bin
+export MYGO=$HOME/Code/Go/src/github.com/ajclisso/
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export PATH=$PATH:/usr/local/ch/bin
 
-export PATH=$PATH:/usr/bin
-
-#################
+################
 # Miscellaneous #
 #################
 
 # Set the prompt!
-precmd() { PROMPT='%B%~%b$(git_super_status) %# ' }
+precmd() { PROMPT='%B%~%b$(git_super_status) ' }
 
 # Enable Python interpreter tab-complete
 export PYTHONSTARTUP=~/.pythonrc
