@@ -33,33 +33,42 @@ HISTFILE=~/.zsh_history
 # Aliases #
 ###########
 
+# Safe cp
+alias cd='cd -i'
+
 # cdls
 if [[ `uname` == 'Darwin' ]]; then
     cd() { builtin cd "$@"; ls -G }
 else
     cd() { builtin cd "$@"; ls --color=auto }
 fi
-# Python<3
-alias py=python3.3
 # Colors!
 if [[ `uname` == 'Darwin' ]]; then
     alias ls='ls -G'
 else
     alias ls='ls --color=auto'
 fi
-
 alias grep='grep --color=auto'
-
 alias tree='tree -C'
+
+# Python
+alias py=python3.3
+
 # Quick up-a-level alias
 alias sdf='cd ..'
+
 # SSH
 alias secs='ssh ajclisso@login.secs.oakland.edu'
+
 # Tomcat start/stop/restart script and catalina.out tailing
 alias tomcat='/etc/init.d/uportal'
+
+# tail catalina.out
 alias cattail='rainbowize tail -f $TOMCAT_HOME/logs/catalina.out'
+
 # My minification script
 alias minify='$HOME/Code/Scripts/minify.sh'
+
 # Lockscreen command
 alias lock='i3lock -t -i $HOME/Dropbox/Work/Pictures/Backgrounds/Largo.PNG'
 
@@ -97,7 +106,7 @@ function yank {
 # "Paste" file from ~/.clipboard
 function put {
     while IFS= read src; do
-      cp -Rp "$src" .
+      cp -Rpi "$src" .
     done < ~/.clipboard
     rm ~/.clipboard
 }
