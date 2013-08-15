@@ -112,7 +112,11 @@ function putrm {
 
 # Strip git clone of boilerplate
 function clone {
-    git clone git@github.com:$@
+    if [[ `hostname` == 'ajclisso-Latitude-D630' ]]; then
+        git clone git@github.com:$@
+    else
+        git clone https://github.com/$@
+    fi
 }
 
 # Usage: build [(portlet)|uportal]
@@ -123,7 +127,7 @@ function build {
     do
         if [[ $arg == "uportal" ]]; then
             tomcat stop
-            groovy -Dbuild.portlets.skip=true build.groovy
+            groovy -Dbuild.portlets.skip=true build.groovy &&
             tomcat start
         else
             groovy -Dbuild.target.portlet=$arg build.groovy
