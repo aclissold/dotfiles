@@ -12,7 +12,7 @@ set softtabstop=4
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Auto-complete shortcut -> phrase
-iabbrev sout System.out.println(
+iabbrev sout System.out.println();<Left><Left>
 
 " Dynamic titles
 set title
