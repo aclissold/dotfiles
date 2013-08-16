@@ -34,7 +34,7 @@ HISTFILE=~/.zsh_history
 ###########
 
 # Safe cp
-alias cd='cd -i'
+alias cp='cp -i'
 
 # cdls
 if [[ `uname` == 'Darwin' ]]; then
@@ -117,6 +117,11 @@ function putrm {
       mv "$src" .
     done < ~/.clipboard
     rm ~/.clipboard
+}
+
+# Logical equivalent to the built-in "unzip" command
+function untar {
+    tar -xvf $@
 }
 
 # Strip git clone of boilerplate
