@@ -494,5 +494,5 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 awful.hooks.timer.register(10, function() volume("update", pb_volume) end)
 
-awful.util.spawn_with_shell("pidgin &")
 awful.util.spawn_with_shell("python3 ~/Code/Python/Python/scroll.py &")
+awful.util.spawn_with_shell("dropbox start")
