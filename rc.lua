@@ -157,7 +157,7 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
+clockwidget = awful.widget.textclock({ align = "right" }, "%a %b %d, %I:%M ", 20)
 
 -- Create a volume widget http://awesome.naquadah.org/wiki/Farhavens_volume_widget
 pb_volume = widget({ type = "progressbar", name = "pb_volume", align = "left" })
@@ -186,18 +186,11 @@ volume("update", pb_volume)
 
 -- CPU usage widget
 cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, " $1%")
+vicious.register(cpuwidget, vicious.widgets.cpu, " $1% | ")
 
--- Memory usage progressbar widget
-memwidget = awful.widget.progressbar()
-memwidget:set_width(8)
-memwidget:set_height(25)
-memwidget:set_vertical(true)
-memwidget:set_background_color("#494B4F")
-memwidget:set_border_color(nil)
-memwidget:set_color("#AECF96")
-memwidget:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
-vicious.register(memwidget, vicious.widgets.mem, "$1", 2)
+-- RAM usage widget
+memwidget = widget({ type = "textbox" })
+vicious.register(memwidget, vicious.widgets.mem, "$2MB | ", 2)
 
 -- My Vicious widgets
 spotwidget = widget({ type = "textbox" })
@@ -281,9 +274,9 @@ for s = 1, screen.count() do
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
-        s == 2 and memwidget or nil,
         mylayoutbox[s],
-        s == 2 and mytextclock or nil,
+        s == 2 and clockwidget or nil,
+        s == 2 and memwidget or nil,
         s == 2 and cpuwidget or nil,
         s == 1 and mysystray or nil,
         s == 1 and spotwidget or nil,
