@@ -143,6 +143,8 @@ function build {
             tomcat stop
             groovy -Dbuild.portlets.skip=true build.groovy &&
             tomcat start
+        elif [[ $arg == "portlets" ]]; then
+            groovy -Dbuild.portal.skip=true build.groovy
         else
             groovy -Dbuild.target.portlet=$arg build.groovy
         fi
@@ -166,6 +168,16 @@ function del {
 # Yup
 function emptytrash {
     rm -rf ~/.trash/*
+}
+
+# Grep through specific file extensions
+function greptype {
+    if [[ $# != 2 ]] then;
+        # filetype should be "java", not ".java" or "*.java"
+        echo 'Usage: greptype <filetype> <pattern>'
+    else
+        find . -type f -name "*.$1" -exec grep --color=auto "$2" {} + 2>/dev/null
+    fi
 }
 
 #########################
