@@ -24,8 +24,8 @@ set undodir=$HOME/.vimundo/
 
 " Language-specific settings
 au FileType python set textwidth=79
+au FileType go set expandtab!
 
-" Golang plugins
 filetype off
 filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
