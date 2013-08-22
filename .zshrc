@@ -33,9 +33,6 @@ HISTFILE=~/.zsh_history
 # Aliases #
 ###########
 
-# Safe cp
-alias cp='cp -i'
-
 # cdls
 if [[ `uname` == 'Darwin' ]]; then
     cd() { builtin cd "$@"; ls -G }
@@ -70,7 +67,7 @@ alias cattail='rainbowize tail -f $TOMCAT_HOME/logs/catalina.out'
 alias minify='$HOME/Code/Scripts/minify.sh'
 
 # Lockscreen command
-alias lock='i3lock -t -i $HOME/Dropbox/Work/Pictures/Backgrounds/Largo.PNG'
+alias lock='i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png && xset r rate 200 60'
 
 # Git
 alias ga='git add '
@@ -106,7 +103,7 @@ function yank {
 # "Paste" file from ~/.clipboard
 function put {
     while IFS= read src; do
-      cp -Rpi "$src" .
+      cp -Rp "$src" .
     done < ~/.clipboard
     rm ~/.clipboard
 }
@@ -217,6 +214,8 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export PATH=$PATH:/usr/local/ch/bin
 
+export PATH=$PATH:/opt/eclipse
+
 ################
 # Miscellaneous #
 #################
@@ -258,3 +257,6 @@ if [[ `uname` != 'Darwin' ]]; then
 fi
 source ~/.dotfiles/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
+
+# Safe cp
+alias cp='cp -i'
