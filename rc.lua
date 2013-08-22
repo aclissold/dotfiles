@@ -19,7 +19,7 @@ muted = false
 
 -- For i3lock keybinding
 function lock()
-    awful.util.spawn_with_shell("i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png")
+    awful.util.spawn_with_shell("i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png && xset r rate 200 60")
 end
 
 function volume (mode, widget)
