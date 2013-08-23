@@ -35,7 +35,7 @@ iabbrev sout System.out.println();<Left><Left>
 
 " Restore cursor upon re-opening a file
 " (Note: has a bug where it doesn't save cursor index on top line of file)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 """"""""""""""""""""""""""""""
 " LANGUAGE-SPECIFIC SETTINGS "
@@ -45,9 +45,11 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 autocmd FileType python set textwidth=79
 
 " Golang plugins
+autocmd FileType go set expandtab!
 filetype off
 filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
+set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
 filetype plugin indent on
 syntax on
 
