@@ -1,5 +1,15 @@
 setopt histignorealldups sharehistory
 
+#############################
+# Index:                    #
+#   * Keybindings           #
+#   * History               #
+#   * Aliases               #
+#   * Functions             #
+#   * Environment Variables #
+#   * Miscellaneous         #
+#############################
+
 ###############
 # Keybindings #
 ###############
@@ -178,7 +188,7 @@ function greptype {
 }
 
 #########################
-# Environment variables #
+# Environment Variables #
 #########################
 if [[ `uname` == 'Darwin' ]]; then
     export M2_HOME=/usr/share/maven
