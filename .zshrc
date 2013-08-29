@@ -102,16 +102,23 @@ alias javadoc7='/opt/jdk1.7.0_25/bin/javadoc'
 #############
 
 # Quickly go to a directory
+#
+# Layout of command:
+#     cd `find -maxdepth 5 ...
+#
+#     (excluded directories and files)
+#
+#     ... -type d -name $1 | head -1`
 goto() {
-    builtin cd `find ~ -maxdepth 5  \
-                                    \
-    ! -path '*/.*/*'                \
-    ! -path '*/uPortal/*'           \
-    ! -path '*/tomcat/webapps/*'    \
-    ! -name '.*'                    \
-                                    \
-    -type d                         \
-    -name $1 | head -1`
+    builtin cd `find ~ -maxdepth 5       \
+                                         \
+    ! -path '*/.*/*'                     \
+    ! -path '*/uPortal/*'                \
+    ! -path '*/tomcat/webapps/*'         \
+    ! -path '*/uportal/overlay/admin/*'  \
+    ! -name '.*'                         \
+                                         \
+    -type d -name $1 | head -1`
 }
 
 # "Copy" file to ~/.clipboard
