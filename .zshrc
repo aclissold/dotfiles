@@ -49,6 +49,7 @@ if [[ `uname` == 'Darwin' ]]; then
 else
     cd() { builtin cd "$@"; ls --color=auto }
 fi
+
 # Colors!
 if [[ `uname` == 'Darwin' ]]; then
     alias ls='ls -G'
@@ -99,6 +100,19 @@ alias javadoc7='/opt/jdk1.7.0_25/bin/javadoc'
 #############
 # Functions #
 #############
+
+# Quickly go to a directory
+goto() {
+    builtin cd `find ~ -maxdepth 5  \
+                                    \
+    ! -path '*/.*/*'                \
+    ! -path '*/uPortal/*'           \
+    ! -path '*/tomcat/webapps/*'    \
+    ! -name '.*'                    \
+                                    \
+    -type d                         \
+    -name $1 | head -1`
+}
 
 # "Copy" file to ~/.clipboard
 function yank {
