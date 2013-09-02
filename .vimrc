@@ -44,6 +44,9 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 " Python textwidth
 autocmd FileType python set textwidth=79
 
+" Use tabs in C
+autocmd FileType c set expandtab!
+
 " Golang plugins
 autocmd FileType go set expandtab!
 filetype off
