@@ -10,7 +10,7 @@ set nu
 set ai
 
 " Tab stuff
-set tabstop=4 shiftwidth=4 expandtab  
+set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
@@ -55,6 +55,12 @@ set runtimepath+=$GOROOT/misc/vim
 set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
 filetype plugin indent on
 syntax on
+
+" CSS tab configuration
+autocmd FileType css set tabstop=2
+autocmd FileType css set shiftwidth=2
+autocmd FileType css set expandtab
+autocmd FileType css set softtabstop=2
 
 """""""""""""
 " GITGUTTER "
