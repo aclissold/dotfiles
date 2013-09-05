@@ -183,9 +183,8 @@ function build {
 # Open files in Chrome without generating libpeerconnection.log
 function chrome {
     for i in "$@"; do
-        google-chrome $i
+        google-chrome $(pwd)/$i > /dev/null
     done
-    rm libpeerconnection.log
 }
 
 # Move file or directory to ~/.trash
