@@ -68,11 +68,13 @@ alias sdf='cd ..'
 # SSH
 alias secs='ssh ajclisso@login.secs.oakland.edu'
 
-# Tomcat start/stop/restart script and catalina.out tailing
-alias tomcat='/etc/init.d/uportal'
+# Tomcat start/stop/restart (usage: uportal/myportal/picknetid start/stop/restart)
+alias uportal='export CATALINA_BASE=/home/ajclisso/uportal/uPortaltomcat; /etc/init.d/tomcat'
+alias myportal='export CATALINA_BASE=/home/ajclisso/uportal/myPortaltomcat; /etc/init.d/tomcat'
+alias picknetid='export CATALINA_BASE=/home/ajclisso/uportal/picknetidtomcat; /etc/init.d/tomcat'
 
 # tail catalina.out
-alias cattail='rainbowize tail -f $TOMCAT_HOME/logs/catalina.out'
+alias cattail='rainbowize tail -f $CATALINA_BASE/logs/catalina.out'
 
 # My minification script
 alias minify='$HOME/Code/Scripts/minify.sh'
@@ -226,8 +228,8 @@ fi
 export ANT_HOME=/home/ajclisso/uportal/ant
 export PATH=$PATH:$ANT_HOME/bin
 
-export TOMCAT_HOME=/home/ajclisso/uportal/tomcat
-export PATH=$PATH:$TOMCAT_HOME
+export CATALINA_HOME=/home/ajclisso/uportal/tomcat
+export PATH=$PATH:$CATALINA_HOME
 
 export GROOVY_HOME=/home/ajclisso/uportal/groovy
 export PATH=$PATH:$GROOVY_HOME/bin
