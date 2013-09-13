@@ -34,4 +34,5 @@ ln -s $(pwd)/.xinitrc ~
 ln -s $(pwd)/.zshrc ~
 mkdir -p ~/.vim/colors
 ln -s $(pwd)/symfony_modified.vim ~/.vim/colors/symfony_modified.vim
+mkdir -p ~/.vimundo
 echo 'Done.'
