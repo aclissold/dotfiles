@@ -39,16 +39,17 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 """"""""""""""""""""""""""""""
 " LANGUAGE-SPECIFIC SETTINGS "
-"""""""""""""""""""""""""""""" 
+""""""""""""""""""""""""""""""
 
 " Python textwidth
 autocmd FileType python set textwidth=79
 
-" Use tabs in C
+" Use actual tabs in C
 autocmd FileType c set expandtab!
 
-" Golang plugins
+" Go
 autocmd FileType go set expandtab!
+autocmd FileType go set textwidth=100
 filetype off
 filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
@@ -56,11 +57,11 @@ set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
 filetype plugin indent on
 syntax on
 
-" CSS tab configuration
-autocmd FileType css set tabstop=2
-autocmd FileType css set shiftwidth=2
-autocmd FileType css set expandtab
-autocmd FileType css set softtabstop=2
+" 2-space tabs for certain languages
+autocmd FileType html set tabstop=2 shiftwidth=2 expandtab softtabstop=2
+autocmd FileType xml set tabstop=2 shiftwidth=2 expandtab softtabstop=2
+autocmd FileType css set tabstop=2 shiftwidth=2 expandtab softtabstop=2
+autocmd FileType jsp set tabstop=2 shiftwidth=2 expandtab softtabstop=2
 
 """""""""""""
 " GITGUTTER "
