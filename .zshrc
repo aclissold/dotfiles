@@ -156,11 +156,7 @@ function untar {
 
 # Strip git clone of boilerplate
 function clone {
-    if [[ `hostname` == 'ajclisso-Latitude-D630' ]]; then
-        git clone git@github.com:$@
-    else
-        git clone https://github.com/$@
-    fi
+    git clone git@github.com:$@
 }
 
 # Usage: build [(portlet)|uportal]
