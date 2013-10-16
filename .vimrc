@@ -1,6 +1,8 @@
 " Enable Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
 
+map <F7> :w<cr>:!~/Code/public_html/deploy.sh<cr>:redraw<cr>
+
 """"""""""""""""""""""
 " GLOBAL VIM TOGGLES "
 """"""""""""""""""""""
@@ -36,6 +38,10 @@ iabbrev sout System.out.println();<Left><Left>
 " Restore cursor upon re-opening a file
 " (Note: has a bug where it doesn't save cursor index on top line of file)
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+inoremap jj <ESC><Right>
+inoremap kk <ESC><Right>
+nnoremap ' @
 
 """"""""""""""""""""""""""""""
 " LANGUAGE-SPECIFIC SETTINGS "
