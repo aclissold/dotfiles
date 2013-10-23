@@ -59,6 +59,8 @@ fi
 alias grep='grep --color=auto'
 alias tree='tree -C'
 
+alias upgrade='sudo apt-get update && sudo apt-get upgrade'
+
 # Python
 alias py=python3.3
 
