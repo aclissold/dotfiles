@@ -83,7 +83,11 @@ alias cattail='CATALINA_BASE=/home/ajclisso/uportal/uPortaltomcat && rainbowize 
 alias minify='$HOME/Code/Scripts/minify.sh'
 
 # Lockscreen command
-alias lock='i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png && xset r rate 200 60'
+if [[ `uname` == 'Darwin' ]]; then
+    alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+else
+    alias lock='i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png && xset r rate 200 60'
+fi
 
 # Git
 alias ga='git add '
