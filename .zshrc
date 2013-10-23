@@ -73,8 +73,11 @@ alias uportal='export CATALINA_BASE=/home/ajclisso/uportal/uPortaltomcat; /etc/i
 alias myportal='export CATALINA_BASE=/home/ajclisso/uportal/myPortaltomcat; /etc/init.d/tomcat'
 alias picknetid='export CATALINA_BASE=/home/ajclisso/uportal/picknetidtomcat; /etc/init.d/tomcat'
 
+# Quickly generate a new JSR-286 portlet
+alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.archetype -DarchetypeArtifactId=jsr286-archetype'
+
 # tail catalina.out
-alias cattail='rainbowize tail -f $CATALINA_BASE/logs/catalina.out'
+alias cattail='CATALINA_BASE=/home/ajclisso/uportal/uPortaltomcat && rainbowize tail -f $CATALINA_BASE/logs/catalina.out'
 
 # My minification script
 alias minify='$HOME/Code/Scripts/minify.sh'
@@ -98,6 +101,9 @@ alias gs='git status '
 alias java7='/opt/jdk1.7.0_25/bin/java'
 alias javac7='/opt/jdk1.7.0_25/bin/javac'
 alias javadoc7='/opt/jdk1.7.0_25/bin/javadoc'
+
+# Fix tmux colorscheme issues
+alias tmux="TERM=screen-256color-bce tmux"
 
 #############
 # Functions #
@@ -154,21 +160,26 @@ function untar {
     tar -xvf $@
 }
 
-# Strip git clone of boilerplate
+# Minimalist git clone
 function clone {
-    git clone git@github.com:$@
+if [[ $@ == */* ]]; then
+        git clone git@github.com:$@
+    else
+        # No "/" found; assume it's my own repo
+        git clone git@github.com:aclissold/$@
+    fi
 }
 
 # Usage: build [(portlet)|uportal]
 function build {
     cwd=$(pwd)
-    builtin cd ~/uportal/myPortal
+    builtin cd ~/uportal/uPortal
     for arg in "$@"
     do
         if [[ $arg == "uportal" ]]; then
-            tomcat stop
+            tomcatman -stop uportal
             groovy -Dbuild.portlets.skip=true build.groovy &&
-            tomcat start
+            tomcatman -start uportal
         elif [[ $arg == "portlets" ]]; then
             groovy -Dbuild.portal.skip=true build.groovy
         else
@@ -178,7 +189,7 @@ function build {
     builtin cd $cwd
 }
 
-# Open files in Chrome without generating libpeerconnection.log
+# Easily open files in Chrome
 function chrome {
     for i in "$@"; do
         google-chrome $(pwd)/$i > /dev/null
@@ -237,7 +248,7 @@ export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
 
 export GOROOT=/usr/local/go/
 export GOPATH=$HOME/Code/Go/
-export MYGO=$HOME/Code/Go/src/github.com/ajclisso/
+export MYGO=$HOME/Code/Go/src/github.com/aclissold/
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export PATH=$PATH:/usr/local/ch/bin
