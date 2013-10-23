@@ -363,7 +363,7 @@ globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioPrev",fu
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioPlay",function() spotcmd("play") end))
 
 -- i3lock keybinding
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86Launch6", function() lock() end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "Pause", function() lock() end))
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
