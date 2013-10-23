@@ -39,9 +39,15 @@ iabbrev sout System.out.println();<Left><Left>
 " (Note: has a bug where it doesn't save cursor index on top line of file)
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Close Vim if NERDTree is the only window left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Keymappings
 inoremap jj <ESC><Right>
 inoremap kk <ESC><Right>
 nnoremap ' @
+nnoremap <C-p> :set paste!<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""
 " LANGUAGE-SPECIFIC SETTINGS "
