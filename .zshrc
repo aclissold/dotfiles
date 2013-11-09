@@ -252,10 +252,11 @@ export PATH=$PATH:$PGDATA/bin
 
 export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
 
-export GOROOT=/usr/local/go/
-export GOPATH=$HOME/Code/Go/
-export MYGO=$HOME/Code/Go/src/github.com/aclissold/
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/Code/Go
+export MYGO=$HOME/Code/Go/src/github.com/aclissold
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$HOME/Code/Go/go_appengine/:$PATH
 
 export PATH=$PATH:/usr/local/ch/bin
 
