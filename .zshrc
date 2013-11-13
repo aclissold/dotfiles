@@ -135,6 +135,9 @@ goto() {
     -type d -name $1 | head -1`
 }
 
+# Make and cd into a dir
+function mkcd() { mkdir $(pwd)/$@ && cd $(pwd)/$@ }
+
 # "Copy" file to ~/.clipboard
 function yank {
     touch ~/.clipboard
