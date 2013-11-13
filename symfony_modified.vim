@@ -42,7 +42,7 @@ hi Normal guifg=#ffffff guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE c
 hi Label guifg=#ff8400 guibg=#222222 guisp=#222222 gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
 "hi CTagsImport -- no settings --
 hi PMenuSel guifg=NONE guibg=#858585 guisp=#858585 gui=NONE ctermfg=NONE ctermbg=102 cterm=NONE
-hi Search guifg=#000000 guibg=#c0c000 guisp=#c0c000 gui=NONE ctermfg=NONE ctermbg=1 cterm=NONE
+hi Search guifg=#000000 guibg=#c0c000 guisp=#c0c000 gui=NONE ctermfg=232 ctermbg=227 cterm=bold
 "hi CTagsGlobalVariable -- no settings --
 hi Delimiter guifg=#ffcc66 guibg=NONE guisp=NONE gui=NONE ctermfg=221 ctermbg=NONE cterm=NONE
 hi Statement guifg=#ff8400 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
