@@ -19,13 +19,13 @@ muted = false
 
 -- For i3lock keybinding
 function lock()
-    awful.util.spawn_with_shell("i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png && xset r rate 200 60")
+    awful.util.spawn_with_shell("i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/Virus.png && xset r rate 300 60")
 end
 
 function volume (mode, widget)
    if mode == "update" then
        local status = io.popen("amixer -c " .. cardid .. " -- sget " .. channel):read("*all")
-       
+
        local volume = string.match(status, "(%d?%d?%d)%%")
 
        status = string.match(status, "%[(o[^%]]*)%]")
@@ -64,7 +64,7 @@ function spotcmd(cmd)
         awful.util.spawn("/home/ajclisso/Code/Python/PySpotifyInfo/spotify_control.py -c previous")
     elseif cmd == "play" then
         awful.util.spawn("/home/ajclisso/Code/Python/PySpotifyInfo/spotify_control.py -c pp")
-    end 
+    end
 end
 
 -- {{{ Error handling
@@ -130,10 +130,13 @@ layouts =
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts[1])
-end
+-- Original code:
+-- for s = 1, screen.count() do
+--     -- Each screen has its own tag table.
+--     tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts[1])
+-- end
+tags[1] = awful.tag({ "1 Main", "2 Logs", "3 IM", "4 Misc"}, 1, layouts[1])
+tags[2] = awful.tag({ "9 Chrome", "0 Pidgin"}, 2, layouts[1])
 -- }}}
 
 -- {{{ Menu
@@ -386,11 +389,13 @@ clientkeys = awful.util.table.join(
         end)
 )
 
+-- Original code:
 -- Compute the maximum number of digit we need, limited to 9
-keynumber = 0
-for s = 1, screen.count() do
-   keynumber = math.min(9, math.max(#tags[s], keynumber));
-end
+-- keynumber = 0
+-- for s = 1, screen.count() do
+--    keynumber = math.min(9, math.max(#tags[s], keynumber));
+-- end
+keynumber = 10
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
@@ -399,10 +404,30 @@ for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                        local screen = mouse.screen
-                        if tags[screen][i] then
-                            awful.tag.viewonly(tags[screen][i])
+                        if     i == 1 then
+                            awful.tag.viewonly(tags[1][1])  -- Main
+                            awful.screen.focus(1)
+                        elseif i == 2 then
+                            awful.tag.viewonly(tags[1][2])  -- Logs
+                            awful.screen.focus(1)
+                        elseif i == 3 then
+                            awful.tag.viewonly(tags[1][3])  -- IM
+                            awful.screen.focus(1)
+                        elseif i == 4 then
+                            awful.tag.viewonly(tags[1][4])  -- Misc
+                            awful.screen.focus(1)
+                        elseif i == 9 then
+                            awful.tag.viewonly(tags[2][1])  -- Chrome
+                            awful.screen.focus(2)
+                        elseif i == 10 then
+                            awful.tag.viewonly(tags[2][2]) -- Pidgin
+                            awful.screen.focus(2)
                         end
+                        -- Original code:
+                        -- local screen = mouse.screen
+                        -- if tags[screen][i] then
+                        --     awful.tag.viewonly(tags[screen][i])
+                        -- end
                   end),
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
