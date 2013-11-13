@@ -1,7 +1,7 @@
 " Enable Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
 
-map <F7> :w<cr>:!~/Code/public_html/deploy.sh<cr>:redraw<cr>
+map <F5> :w<cr>:!~/Code/public_html/deploy.sh<cr>:redraw<cr>
 
 """"""""""""""""""""""
 " GLOBAL VIM TOGGLES "
@@ -17,16 +17,15 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
-" Dynamic titles
-set title
-set titleold=Terminal
-
 " Persistent undo
 set undofile
 set undodir=$HOME/.vimundo/
 
 " 'g' flag for :%s on by default
 set gdefault
+
+" Use hlsearch by default
+set hlsearch
 
 """""""""""""""""""
 " CUSTOM SETTINGS "
@@ -48,6 +47,9 @@ nnoremap ' @
 nnoremap <C-p> :set paste!<CR>
 nnoremap <C-z> :set spell!<CR>
 map <C-n> :NERDTreeToggle<CR>
+map <C-l> :set nu!<CR>
+map <C-g> :GitGutterToggle<CR>
+inoremap {{ {<CR>}<Esc>O
 
 """"""""""""""""""""""""""""""
 " LANGUAGE-SPECIFIC SETTINGS "
