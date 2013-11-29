@@ -172,9 +172,12 @@ function untar {
 # Minimalist git clone
 function clone {
 if [[ $@ == */* ]]; then
-        git clone git@github.com:$@
+        repo=$@
+        # truncate username / repo to username/repo
+        repo=${repo/\ \/\ /\/}
+        git clone git@github.com:${repo}
     else
-        # No "/" found; assume it's my own repo
+        # No "/" found--assume it's my own repo
         git clone git@github.com:aclissold/$@
     fi
 }
