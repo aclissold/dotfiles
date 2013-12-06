@@ -136,7 +136,7 @@ goto() {
 }
 
 # Make and cd into a dir
-function mkcd() { mkdir $(pwd)/$@ && cd $(pwd)/$@ }
+function mkcd() { mkdir -p $(pwd)/$@ && cd $(pwd)/$@ }
 
 # "Copy" file to ~/.clipboard
 function yank {
@@ -309,6 +309,3 @@ if [[ `uname` != 'Darwin' ]]; then
 fi
 source ~/.dotfiles/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
-
-# Safe cp
-alias cp='cp -i'
