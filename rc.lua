@@ -19,7 +19,7 @@ muted = false
 
 -- For i3lock keybinding
 function lock()
-    awful.util.spawn_with_shell("i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/Virus.png && xset r rate 300 60")
+    awful.util.spawn_with_shell("i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png && xset r rate 300 60")
 end
 
 function volume (mode, widget)
@@ -136,7 +136,7 @@ tags = {}
 --     tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts[1])
 -- end
 tags[1] = awful.tag({ "1 Main", "2 Logs", "3 IM", "4 Misc"}, 1, layouts[1])
-tags[2] = awful.tag({ "9 Chrome", "0 Pidgin"}, 2, layouts[1])
+tags[2] = awful.tag({ "9 Chrome", "0 Spotify"}, 2, layouts[1])
 -- }}}
 
 -- {{{ Menu
@@ -340,13 +340,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ modkey,           }, "r",     function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey },            "space", function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "x",
               function ()
