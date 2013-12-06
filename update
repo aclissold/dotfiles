@@ -7,7 +7,7 @@
 
 if [[ -n $(pwd | grep '/.dotfiles$') ]]
 then
-    echo 'Making links... '
+    echo 'Making symlinks... '
     ln -s $(pwd)/.gitconfig ~
     ln -s $(pwd)/.gitignore_global ~
     ln -s $(pwd)/.pylintrc ~
@@ -19,7 +19,9 @@ then
     ln -s $(pwd)/.zshrc ~
     mkdir -p ~/.vimundo
     echo 'Done.'
+    echo 'Updating submodules... '
     git submodule update --init
+    echo 'Done.'
 else
     echo "Command failed. Please ensure that
     1) this repository exists at ~/.dotfiles, and
