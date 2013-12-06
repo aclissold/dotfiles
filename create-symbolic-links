@@ -19,6 +19,7 @@ then
     ln -s $(pwd)/.zshrc ~
     mkdir -p ~/.vimundo
     echo 'Done.'
+    git submodule update --init
 else
     echo "Command failed. Please ensure that
     1) this repository exists at ~/.dotfiles, and
