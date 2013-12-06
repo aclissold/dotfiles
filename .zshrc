@@ -307,5 +307,5 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 if [[ `uname` != 'Darwin' ]]; then
     source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-source ~/.dotfiles/zsh-history-substring-search.zsh
+source ~/.zsh/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh

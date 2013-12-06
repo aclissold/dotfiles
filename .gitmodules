@@ -1,0 +1,21 @@
+[submodule ".zsh/zsh-git-prompt"]
+	path = .zsh/git-prompt
+	url = https://github.com/olivierverdier/zsh-git-prompt
+[submodule ".zsh/zsh-syntax-highlighting"]
+	path = .zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule ".vim/keyboard_cat.vim"]
+	path = .vim/bundle/keyboard_cat.vim
+	url = https://github.com/natw/keyboard_cat.vim
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule ".vim/bundle/vim-gitgutter"]
+	path = .vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule ".vim/bundle/vim-java-unused-imports"]
+	path = .vim/bundle/vim-java-unused-imports
+	url = https://github.com/akhaku/vim-java-unused-imports
+[submodule ".vim/bundle/vim-trailing-whitespace"]
+	path = .vim/bundle/vim-trailing-whitespace
+	url = https://github.com/bronson/vim-trailing-whitespace
