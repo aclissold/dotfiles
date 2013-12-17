@@ -42,6 +42,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Keymappings
+inoremap kk <ESC><Right>
 inoremap jj <ESC><Right>
 nnoremap ' @
 nnoremap <C-p> :set paste!<CR>
