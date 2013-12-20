@@ -215,7 +215,7 @@ function chrome {
 
 # Move file or directory to ~/.trash
 function del {
-    mv "$@" ~/.trash
+    mv -i "$@" ~/.trash
 }
 
 # Yup
