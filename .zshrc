@@ -193,6 +193,10 @@ function build {
             tomcatman -stop uportal
             groovy -Dbuild.portlets.skip=true build.groovy &&
             tomcatman -start uportal
+        elif [[ $arg == "init" ]]; then
+            tomcatman -stop uportal
+            groovy -Dbuild.ant.target="clean initportal" build.groovy &&
+            tomcatman -start uportal
         elif [[ $arg == "portlets" ]]; then
             groovy -Dbuild.portal.skip=true build.groovy
         else
