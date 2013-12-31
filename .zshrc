@@ -45,13 +45,13 @@ HISTFILE=~/.zsh_history
 
 # auto ls after cd
 if [[ `uname` == 'Darwin' ]]; then
-    cd() { builtin cd "$@"; ls -G }
-    pushd() { builtin pushd "$@"; ls -G }
-    popd() { builtin popd "$@"; ls -G }
+    cd() { builtin cd "$@" && ls -G }
+    pushd() { builtin pushd "$@" && ls -G }
+    popd() { builtin popd "$@" && ls -G }
 else
-    cd() { builtin cd "$@"; ls --color=auto }
-    pushd() { builtin pushd "$@"; ls --color=auto }
-    popd() { builtin popd "$@"; ls --color=auto }
+    cd() { builtin cd "$@" && ls --color=auto }
+    pushd() { builtin pushd "$@" && ls --color=auto }
+    popd() { builtin popd "$@" && ls --color=auto }
 fi
 
 # Colors!
