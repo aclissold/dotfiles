@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/RelOps"]
 	path = .vim/bundle/RelOps
 	url = https://github.com/vim-scripts/RelOps
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+	url = git@github.com:scrooloose/nerdcommenter.git
