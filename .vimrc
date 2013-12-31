@@ -1,7 +1,7 @@
 " Enable Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
 
-map <F5> :w<cr>:!~/Code/public_html/deploy.sh<cr>:redraw<cr>
+map <F5> :w<CR>:!./deploy.sh<CR>:redraw<CR>
 
 """"""""""""""""""""""
 " GLOBAL VIM TOGGLES "
