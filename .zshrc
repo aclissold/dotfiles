@@ -43,11 +43,15 @@ HISTFILE=~/.zsh_history
 # Aliases #
 ###########
 
-# cdls
+# auto ls after cd
 if [[ `uname` == 'Darwin' ]]; then
     cd() { builtin cd "$@"; ls -G }
+    pushd() { builtin pushd "$@"; ls -G }
+    popd() { builtin popd "$@"; ls -G }
 else
     cd() { builtin cd "$@"; ls --color=auto }
+    pushd() { builtin pushd "$@"; ls --color=auto }
+    popd() { builtin popd "$@"; ls --color=auto }
 fi
 
 # Colors!
@@ -237,7 +241,7 @@ function greptype {
 # Environment Variables #
 #########################
 if [[ `uname` == 'Darwin' ]]; then
-    export M2_HOME=/usr/share/maven
+    export M2_HOME=/usr/local/mvn
 else
     export M2_HOME=/home/ajclisso/uportal/maven
 fi
@@ -269,9 +273,10 @@ export MYGO=$HOME/Code/Go/src/github.com/aclissold
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$HOME/Code/Go/go_appengine/:$PATH
 
-export PATH=$PATH:/usr/local/ch/bin
+export ANDROID_HOME=/usr/local/android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-export PATH=$PATH:/opt/eclipse
+export PATH=$PATH:/usr/local/mvn/bin
 
 ################
 # Miscellaneous #
