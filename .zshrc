@@ -237,6 +237,39 @@ function greptype {
     fi
 }
 
+# Magic Grep Part I: cd into directories where grep matches are found
+function grepcd() {
+    # Print the results of grep, with numbers prepended.
+    grep --color=always -r "$@" | nl
+    # if grep matched anything
+    if [[ $(echo $pipestatus | awk '{print $1}') == 0 ]]; then
+        # prompt for a number
+        echo -n "Enter the number of the path to cd into (q quits): "
+        read linenumber
+        # if a number was entered
+        if [[ -n $(echo $linenumber | grep '^[0-9]*$') ]]; then
+            # cd to the path of the file that was preprended by number entered
+            cd `grep -r $@ | sed "s/:.*//" | xargs echo | awk -v path=$linenumber '{print $path}' | xargs dirname`
+        fi
+    fi
+}
+
+# Magic Grep Part II: Vim into a grep match at the match's line number
+function grepvim() {
+    grep --color=always -rn "$@" | nl
+    # if grep matched anything
+    if [[ $(echo $pipestatus | awk '{print $1}') == 0 ]]; then
+        # prompt for a number
+        echo -n "Enter number of the file you want to edit (q quits): "
+        read linenumber
+        # if a number was entered
+        if [[ -n $(echo $linenumber | grep '^[0-9]*$') ]]; then
+            # open Vim to the match's position
+            vim `grep -nr $@ | sed 's/ //g' | sed 's/:[^:+][^:].*/:/' | sed 's/:/ /g' | xargs echo | awk -v path=$linenumber '{print $(path*2-1) " +" $(path*2)}'`
+        fi
+    fi
+}
+
 #########################
 # Environment Variables #
 #########################
