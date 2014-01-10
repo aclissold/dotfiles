@@ -50,6 +50,7 @@ nnoremap <C-z> :set spell!<CR>
 map <C-n> :NERDTreeToggle<CR>
 map <C-l> :set nu!<CR>
 map <C-g> :GitGutterToggle<CR>
+map <C-h> :set hlsearch!<CR>
 inoremap {{ {<CR>}<Esc>O
 
 """"""""""""""""""""""""""""""
