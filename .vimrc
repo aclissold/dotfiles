@@ -75,6 +75,8 @@ syntax on
 
 " Ruby
 autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
+" automate switching to another terminal to test out a script
+autocmd FileType ruby map <F5> :w<CR>:!xdotool keydown super key Tab keyup super key Up KP_Enter keydown super key Tab keyup super<CR>:redraw<CR>
 
 """""""""""""
 " GITGUTTER "
