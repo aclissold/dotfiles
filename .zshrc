@@ -108,11 +108,6 @@ alias gp='git push'
 alias gpu='git pull'
 alias gs='git status '
 
-# Java 7
-alias java7='/opt/jdk1.7.0_25/bin/java'
-alias javac7='/opt/jdk1.7.0_25/bin/javac'
-alias javadoc7='/opt/jdk1.7.0_25/bin/javadoc'
-
 # Fix tmux colorscheme issues
 alias tmux="TERM=screen-256color-bce tmux"
 
