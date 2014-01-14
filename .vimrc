@@ -73,6 +73,9 @@ set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
 filetype plugin indent on
 syntax on
 
+" Ruby
+autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
+
 """""""""""""
 " GITGUTTER "
 """""""""""""
