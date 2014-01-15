@@ -82,9 +82,6 @@ alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.ar
 # tail catalina.out
 alias cattail='CATALINA_BASE=/home/ajclisso/uPortal/uPortaltomcat && rainbowize tail -f $CATALINA_BASE/logs/catalina.out'
 
-# My minification script
-alias minify='$HOME/Code/Scripts/minify.sh'
-
 # Lockscreen command
 if [[ `uname` == 'Darwin' ]]; then
     alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
@@ -301,7 +298,7 @@ export PATH=$HOME/Code/Go/go_appengine/:$PATH
 export ANDROID_HOME=/usr/local/android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-export PATH=$PATH:/usr/local/mvn/bin
+export PATH=$PATH:$HOME/Code/Scripts
 
 ################
 # Miscellaneous #
