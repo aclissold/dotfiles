@@ -5,6 +5,7 @@
 [core]
 	autocrlf = false
 	safecrlf = true
+	excludesfile = ~/.gitignore
 [alias]
 	hist = log --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(bold)%s%C(green)%d%C(reset) %C(red)[%an]' --graph --date=short
     amend = commit --amend -C HEAD

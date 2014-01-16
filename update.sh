@@ -9,7 +9,7 @@ if [[ -n $(pwd | grep '/.dotfiles$') ]]
 then
     echo 'Making symlinks... '
     ln -s $(pwd)/.gitconfig ~
-    ln -s $(pwd)/.gitignore_global ~
+    ln -s $(pwd)/.gitignore ~
     ln -s $(pwd)/.pylintrc ~
     ln -s $(pwd)/.pythonrc ~
     ln -s $(pwd)/.vim ~
