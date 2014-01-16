@@ -17,6 +17,7 @@ then
     ln -s $(pwd)/.xinitrc ~
     ln -s $(pwd)/.zsh ~
     ln -s $(pwd)/.zshrc ~
+    ln -s $(pwd)/.irbrc ~
     mkdir -p ~/.vimundo
     echo 'Done.'
     echo 'Updating submodules... '
