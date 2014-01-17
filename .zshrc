@@ -63,6 +63,8 @@ fi
 alias grep='grep --color=auto'
 alias tree='tree -C'
 
+# apt-get
+alias sag='sudo apt-get'
 alias upgrade='sudo apt-get update && sudo apt-get upgrade'
 
 # Python
