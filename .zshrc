@@ -63,6 +63,12 @@ fi
 alias grep='grep --color=auto'
 alias tree='tree -C'
 
+# Make OS X a little more GNU-ish
+if [[ `uname` == 'Darwin' ]]; then
+    alias tailf='tail -f'
+    alias updatedb='sudo /usr/libexec/locate.updatedb'
+fi
+
 # apt-get
 alias sag='sudo apt-get'
 alias upgrade='sudo apt-get update && sudo apt-get upgrade'
@@ -266,6 +272,7 @@ function grepvim() {
 #########################
 if [[ `uname` == 'Darwin' ]]; then
     export M2_HOME=/usr/local/mvn
+    export PATH=$PATH:$HOME/.apportable/SDK/bin
 else
     export M2_HOME=/home/ajclisso/uPortal/maven
 fi
