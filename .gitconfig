@@ -7,12 +7,10 @@
 	safecrlf = true
 	excludesfile = ~/.gitignore
 [alias]
-	hist = log --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(bold)%s%C(green)%d%C(reset) %C(red)[%an]' --graph --date=short
+	hist = log --pretty=format:'%C(auto)%h %ad | %s%d [%an]' --graph --date=short
     amend = commit --amend -C HEAD
     home = config user.email "andrewclissold@gmail.com"
     work = config user.email "ajclisso@oakland.edu"
-	type = cat-file -t
-	dump = cat-file -p
 [color]
 	ui = true
 [push]
