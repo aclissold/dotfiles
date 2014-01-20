@@ -1,0 +1,26 @@
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Nudge Bindings
+bind right:ctrl;alt nudge +10% +0
+bind left:ctrl;alt  nudge -10% +0
+bind up:ctrl;alt    nudge +0   -10%
+bind down:ctrl;alt  nudge +0   +10%
+
+# Resize Bindings
+bind right:alt;cmd        resize +10% +0
+bind left:alt;cmd         resize -10% +0
+bind up:alt;cmd           resize +0   -10%
+bind down:alt;cmd         resize +0   +10%
+bind right:alt;cmd;shift  resize -10% +0 bottom-right
+bind left:alt;cmd;shift   resize +10% +0 bottom-right
+bind up:alt;cmd;shift     resize +0   +10% bottom-right
+bind down:alt;cmd;shift   resize +0   -10% bottom-right
+
+# Push Bindings
+bind right:ctrl;alt;cmd  push right bar-resize:screenSizeX/3
+bind left:ctrl;alt;cmd   push left  bar-resize:2*(screenSizeX/3)
+
+# Window Hints
+bind esc:cmd hint

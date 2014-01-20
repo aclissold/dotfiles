@@ -18,6 +18,10 @@ then
     ln -s $(pwd)/.zsh ~
     ln -s $(pwd)/.zshrc ~
     ln -s $(pwd)/.irbrc ~
+    if [[ $(uname) == 'Darwin' ]]
+    then
+        ln -s $(pwd)/.slate ~
+    fi
     mkdir -p ~/.vimundo
     echo 'Done.'
     echo 'Updating submodules... '
