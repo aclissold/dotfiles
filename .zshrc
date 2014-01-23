@@ -214,14 +214,14 @@ function chrome {
     done
 }
 
-# Move file or directory to ~/.trash
+# Move file or directory to ~/.Trash
 function del {
-    mv -i "$@" ~/.trash
+    mv -i "$@" ~/.Trash
 }
 
 # Yup
 function emptytrash {
-    rm -rf ~/.trash/*
+    rm -rf ~/.Trash/*
 }
 
 # Grep through specific file extensions
