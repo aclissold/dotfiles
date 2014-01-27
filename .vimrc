@@ -47,9 +47,11 @@ inoremap jj <ESC><Right>
 nnoremap ' @
 nnoremap <C-p> :set paste!<CR>
 nnoremap <C-z> :set spell!<CR>
-map <C-n> :NERDTreeToggle<CR>
-map <C-l> :set nu!<CR>
+map <C-f> :FixWhitespace<CR>
 map <C-g> :GitGutterToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
+map <C-b> :RainbowParenthesesToggle<CR>
+map <C-l> :set nu!<CR>
 map <C-h> :set hlsearch!<CR>
 inoremap {{ {<CR>}<Esc>O
 
@@ -77,6 +79,9 @@ syntax on
 autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
 " automate switching to another terminal to test out a script
 autocmd FileType ruby map <F5> :w<CR>:!xdotool keydown super key Tab keyup super key Up KP_Enter <CR>:redraw<CR>
+
+" Clojure (overtone)
+autocmd FileType clojure RainbowParenthesesToggle
 
 """""""""""""
 " GITGUTTER "
