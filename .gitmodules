@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/rainbow_parenthesis"]
 	path = .vim/bundle/rainbow_parenthesis
 	url = https://github.com/kien/rainbow_parentheses.vim
+[submodule ".vim/bundle/vim-javascript-syntax"]
+	path = .vim/bundle/vim-javascript-syntax
+	url = https://github.com/jelera/vim-javascript-syntax
