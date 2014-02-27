@@ -273,16 +273,14 @@ function grepvim() {
 if [[ `uname` == 'Darwin' ]]; then
     export M2_HOME=/usr/local/mvn
     export PATH=$PATH:$HOME/.apportable/SDK/bin
+    export XML_CATALOG_FILES=/usr/local/etc/xml/catalog # for asciidoc
 else
     export M2_HOME=/home/ajclisso/uPortal/maven
-fi
-export M2=$M2_HOME/bin
-export PATH=$M2:$PATH
-
-if [[ `uname` != 'Darwin' ]]; then
     export JAVA_HOME=/usr/lib/jvm/default-java
     export PATH=$JAVA_HOME/bin:$PATH
 fi
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
 
 export ANT_HOME=/home/ajclisso/uPortal/ant
 export PATH=$PATH:$ANT_HOME/bin
