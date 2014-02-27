@@ -10,6 +10,7 @@ map <F5> :w<CR>:!./deploy.sh<CR>:redraw<CR>
 " Line numbering and auto-indenting
 set nu
 set ai
+set regexpengine=1
 
 " Tab stuff
 set tabstop=4
@@ -78,6 +79,10 @@ syntax on
 
 " Ruby
 autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
+autocmd Filetype ruby set tabstop=2
+autocmd Filetype ruby set shiftwidth=2
+autocmd Filetype ruby set expandtab
+autocmd Filetype ruby set softtabstop=2
 " automate switching to another terminal to test out a script
 autocmd FileType ruby map <F5> :w<CR>:!xdotool keydown super key Tab keyup super key Up KP_Enter <CR>:redraw<CR>
 
