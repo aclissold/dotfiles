@@ -44,6 +44,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Keymappings
 inoremap kk <ESC><Right>
 inoremap jj <ESC><Right>
+inoremap hh <ESC><Right>
 nnoremap ' @
 nnoremap <C-p> :set paste!<CR>
 nnoremap <C-z> :set spell!<CR>
