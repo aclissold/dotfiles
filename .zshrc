@@ -348,3 +348,4 @@ if [[ `uname` != 'Darwin' ]]; then
 fi
 source ~/.zsh/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
+source /usr/local/go/misc/zsh/go
