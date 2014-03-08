@@ -300,12 +300,14 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/Code/Go
 export MYGO=$HOME/Code/Go/src/github.com/aclissold
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export PATH=$HOME/Code/Go/go_appengine/:$PATH
+export PATH=$HOME/Code/Go/go_appengine:$PATH
 
 export ANDROID_HOME=/usr/local/android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:$HOME/Code/Scripts
+
+export PATH=$PATH:$HOME/.play
 
 ################
 # Miscellaneous #
