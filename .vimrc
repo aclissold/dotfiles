@@ -10,7 +10,6 @@ map <F5> :w<CR>:!./deploy.sh<CR>:redraw<CR>
 " Line numbering and auto-indenting
 set nu
 set ai
-set regexpengine=1
 
 " Tab stuff
 set tabstop=4
