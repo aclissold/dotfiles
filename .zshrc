@@ -110,6 +110,11 @@ alias gp='git push'
 alias gpu='git pull'
 alias gs='git status '
 
+# Because ls -l is almost impossible to type on the Dvorak layout
+alias ao='ls'
+alias aoe='ls -l'
+alias aoeu='ls -la'
+
 # Fix tmux colorscheme issues
 alias tmux="TERM=screen-256color-bce tmux"
 
