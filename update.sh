@@ -18,6 +18,7 @@ then
     ln -s $(pwd)/.zsh ~
     ln -s $(pwd)/.zshrc ~
     ln -s $(pwd)/.irbrc ~
+    ln -s $(pwd)/.gemrc ~
     if [[ $(uname) == 'Darwin' ]]
     then
         ln -s $(pwd)/.slate ~

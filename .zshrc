@@ -308,6 +308,7 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$HOME/Code/Scripts
 
 export PATH=$PATH:$HOME/.play
+export PATH=$PATH:$HOME/.rvm/bin
 
 ################
 # Miscellaneous #
