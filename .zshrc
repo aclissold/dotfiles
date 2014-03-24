@@ -113,6 +113,7 @@ alias gs='git status '
 # Because ls -l is almost impossible to type on the Dvorak layout
 alias ao='ls'
 alias aoe='ls -l'
+alias aou='ls -a'
 alias aoeu='ls -la'
 
 # Fix tmux colorscheme issues
