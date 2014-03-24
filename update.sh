@@ -22,6 +22,7 @@ then
     if [[ $(uname) == 'Darwin' ]]
     then
         ln -s $(pwd)/.slate ~
+        ln -s $(pwd)/.vimrc ~/.xvimrc
     fi
     mkdir -p ~/.vimundo
     echo 'Done.'
