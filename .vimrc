@@ -112,4 +112,4 @@ highlight GitGutterDelete ctermfg=124 cterm=bold
 " COLORSCHEMES "
 """"""""""""""""
 
-colorscheme symfony_modified
+colorscheme lunarized
