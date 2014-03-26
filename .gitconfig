@@ -7,7 +7,7 @@
 	safecrlf = true
 	excludesfile = ~/.gitignore
 [alias]
-	hist = log --pretty=format:'%C(auto)%h %ad | %s%d [%an]' --graph --date=short
+	hist = log --pretty=format:'%C(auto)%h %ad | %s%d %C(red)[%an]' --graph --date=short
     amend = commit --amend -C HEAD
     home = config user.email "andrewclissold@gmail.com"
     work = config user.email "ajclisso@oakland.edu"
