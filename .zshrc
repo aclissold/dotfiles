@@ -330,10 +330,6 @@ export PYTHONSTARTUP=~/.pythonrc
 # Default text editor
 export EDITOR=/usr/bin/vim
 
-# Use modern completion system
-autoload -Uz compinit
-compinit
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -358,4 +354,6 @@ if [[ `uname` != 'Darwin' ]]; then
 fi
 source ~/.zsh/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
+[[ -s /Users/aclissold/.autojump/etc/profile.d/autojump.sh ]] && source /Users/aclissold/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
 source /usr/local/go/misc/zsh/go
