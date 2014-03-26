@@ -120,6 +120,11 @@ alias aoeu='ls -la'
 # Fix tmux colorscheme issues
 alias tmux="TERM=screen-256color-bce tmux"
 
+if [[ `uname` == 'Darwin' ]]; then
+    alias night='diskutil eject External'
+    alias morn='diskutil mountDisk External'
+fi
+
 #############
 # Functions #
 #############
