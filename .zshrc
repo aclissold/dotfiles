@@ -321,6 +321,9 @@ export PATH=$PATH:$HOME/.rvm/bin
 # Miscellaneous #
 #################
 
+# Famed Zsh autocompletion (also used with autojump)
+autoload -U compinit && compinit -u
+
 # Set the prompt!
 precmd() { PROMPT='%B%~%b$(git_super_status) ' }
 
@@ -349,11 +352,13 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Plugin sourcing (order matters for some)
-if [[ `uname` != 'Darwin' ]]; then
+if [[ `uname` == 'Darwin' ]]; then
+    [[ -s `brew --prefix`/etc/autojump.sh ]] && source `brew --prefix`/etc/autojump.sh
+else
+    [[ -s /Users/aclissold/.autojump/etc/profile.d/autojump.sh ]] && source /Users/aclissold/.autojump/etc/profile.d/autojump.sh
     source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
 source ~/.zsh/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
-[[ -s /Users/aclissold/.autojump/etc/profile.d/autojump.sh ]] && source /Users/aclissold/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
 source /usr/local/go/misc/zsh/go
