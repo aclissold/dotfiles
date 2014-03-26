@@ -61,6 +61,9 @@ inoremap {{ {<CR>}<Esc>O
 " LANGUAGE-SPECIFIC SETTINGS "
 """"""""""""""""""""""""""""""
 
+" Git commit message police
+autocmd FileType gitcommit setlocal spell textwidth=72
+
 " Python textwidth
 autocmd FileType python set textwidth=79
 
