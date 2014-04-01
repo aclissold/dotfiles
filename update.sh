@@ -10,6 +10,7 @@ then
     echo 'Making symlinks... '
     ln -s $(pwd)/.gitconfig ~
     ln -s $(pwd)/.gitignore ~
+    ln -s $(pwd)/.tmux.conf ~
     ln -s $(pwd)/.pylintrc ~
     ln -s $(pwd)/.pythonrc ~
     ln -s $(pwd)/.vim ~
