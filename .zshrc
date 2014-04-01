@@ -90,13 +90,6 @@ alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.ar
 # tail catalina.out
 alias cattail='CATALINA_BASE=/home/ajclisso/uPortal/uPortaltomcat && rainbowize tail -f $CATALINA_BASE/logs/catalina.out'
 
-# Lockscreen command
-if [[ `uname` == 'Darwin' ]]; then
-    alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
-else
-    alias lock='i3lock -i /home/ajclisso/Dropbox/Work/Pictures/Backgrounds/RedLock.png && xset r rate 200 60'
-fi
-
 # Git
 alias ga='git add '
 alias gb='git branch '
