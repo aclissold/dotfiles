@@ -171,11 +171,6 @@ function putrm {
     rm ~/.clipboard
 }
 
-# Logical equivalent to the built-in "unzip" command
-function untar {
-    tar -xvf $@
-}
-
 # Minimalist git clone
 function clone {
 if [[ $@ == */* ]]; then
