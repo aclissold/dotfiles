@@ -102,6 +102,7 @@ alias gm='git merge'
 alias gp='git push'
 alias gpu='git pull'
 alias gr='git reset'
+alias grm='git rm'
 alias gs='git status '
 
 # Because ls -l is almost impossible to type on the Dvorak layout
