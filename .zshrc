@@ -219,12 +219,10 @@ function chrome {
     done
 }
 
-# Move file or directory to ~/.Trash
+# Trash commands
 function del {
-    mv -i "$@" ~/.Trash
+    mv -i "$@" ~/.Trash/
 }
-
-# Yup
 function emptytrash {
     rm -rf ~/.Trash/*
 }

@@ -26,6 +26,7 @@ then
         ln -s $(pwd)/.vimrc ~/.xvimrc
     fi
     mkdir -p ~/.vimundo
+    mkdir -p ~/.Trash
     echo 'Done.'
     echo 'Updating submodules... '
     git submodule update --init
