@@ -8,6 +8,7 @@
 if [[ -n $(pwd | grep '/.dotfiles$') ]]
 then
     echo 'Making symlinks... '
+    ln -s $(pwd)/.fonts.conf ~
     ln -s $(pwd)/.gitconfig ~
     ln -s $(pwd)/.gitignore ~
     ln -s $(pwd)/.tmux.conf ~
