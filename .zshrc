@@ -78,7 +78,7 @@ else
 fi
 
 # Python
-alias py=python3.3
+alias py=python3
 
 # SSH
 alias secs='ssh ajclisso@login.secs.oakland.edu'
