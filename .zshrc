@@ -69,9 +69,13 @@ if [[ `uname` == 'Darwin' ]]; then
     alias updatedb='sudo /usr/libexec/locate.updatedb'
 fi
 
-# apt-get
+# Package managers
 alias sag='sudo apt-get'
-alias upgrade='sudo apt-get update && sudo apt-get upgrade'
+if [[ `uname` == 'Darwin' ]]; then
+    alias uu='brew update && brew upgrade'
+else
+    alias uu='sudo apt-get update && sudo apt-get upgrade'
+fi
 
 # Python
 alias py=python3.3
