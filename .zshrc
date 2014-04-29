@@ -356,4 +356,5 @@ compinit -u
 
 source ~/.zsh/zsh-history-substring-search.zsh
 source ~/.zsh/git-prompt/zshrc.sh
+source /usr/local/share/zsh/site-functions/_gibo &> /dev/null
 source /usr/local/go/misc/zsh/go
