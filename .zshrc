@@ -84,15 +84,15 @@ alias py=python3
 alias secs='ssh ajclisso@login.secs.oakland.edu'
 
 # Quickly change environment variables for tailing the appropriate logs
-alias uportal='export CATALINA_BASE=/home/ajclisso/uPortal/uPortaltomcat'
-alias myportal='export CATALINA_BASE=/home/ajclisso/uPortal/myPortaltomcat'
-alias picknetid='export CATALINA_BASE=/home/ajclisso/uPortal/picknetidtomcat'
+alias uportal='export CATALINA_BASE=$HOME/uPortal/uPortaltomcat'
+alias myportal='export CATALINA_BASE=$HOME/uPortal/myPortaltomcat'
+alias picknetid='export CATALINA_BASE=$HOME/uPortal/picknetidtomcat'
 
 # Quickly generate a new JSR-286 portlet
 alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.archetype -DarchetypeArtifactId=jsr286-archetype'
 
 # tail catalina.out
-alias cattail='CATALINA_BASE=/home/ajclisso/uPortal/uPortaltomcat && rainbowize tail -f $CATALINA_BASE/logs/catalina.out'
+alias cattail='CATALINA_BASE=$HOME/uPortal/uPortaltomcat && rainbowize tail -f $CATALINA_BASE/logs/catalina.out'
 
 # Git
 alias ga='git add '
@@ -278,20 +278,20 @@ if [[ `uname` == 'Darwin' ]]; then
     export PATH=$PATH:$HOME/.apportable/SDK/bin
     export XML_CATALOG_FILES=/usr/local/etc/xml/catalog # for asciidoc
 else
-    export M2_HOME=/home/ajclisso/uPortal/maven
+    export M2_HOME=$HOME/uPortal/maven
     export JAVA_HOME=/usr/lib/jvm/default-java
     export PATH=$JAVA_HOME/bin:$PATH
 fi
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 
-export ANT_HOME=/home/ajclisso/uPortal/ant
+export ANT_HOME=$HOME/uPortal/ant
 export PATH=$PATH:$ANT_HOME/bin
 
-export CATALINA_HOME=/home/ajclisso/uPortal/tomcat
+export CATALINA_HOME=$HOME/uPortal/tomcat
 export PATH=$PATH:$CATALINA_HOME
 
-export GROOVY_HOME=/home/ajclisso/uPortal/groovy
+export GROOVY_HOME=$HOME/uPortal/groovy
 export PATH=$PATH:$GROOVY_HOME/bin
 
 export PGDATA=/opt/PostgreSQL/9.2/
