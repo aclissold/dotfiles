@@ -5,6 +5,11 @@
 # files / symlinks already exist where these ones belong--ln -s fails if
 # something already exists in a given location under the same name.
 
+if [[ $(git pull) =~ "up-to-date" ]]
+then
+    exit 0
+fi
+
 symlink () {
     for file in $@
     do
@@ -28,6 +33,8 @@ then
     else
         symlink .fonts.conf
     fi
+
+    source ~/.zshrc
 
     mkdir -p ~/.vimundo
     mkdir -p ~/.Trash
