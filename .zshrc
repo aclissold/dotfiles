@@ -66,22 +66,15 @@ else
     alias uu='sudo apt-get update && sudo apt-get upgrade'
 fi
 
-# Python
+# Programming languages
 alias py=python3
-
-# SSH
-alias secs='ssh ajclisso@login.secs.oakland.edu'
-
-# Quickly change environment variables for tailing the appropriate logs
-alias uportal='export CATALINA_BASE=$HOME/uPortal/uPortaltomcat'
-alias myportal='export CATALINA_BASE=$HOME/uPortal/myPortaltomcat'
-alias picknetid='export CATALINA_BASE=$HOME/uPortal/picknetidtomcat'
+alias swift='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift'
 
 # Quickly generate a new JSR-286 portlet
 alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.archetype -DarchetypeArtifactId=jsr286-archetype'
 
 # tail catalina.out
-alias cattail='CATALINA_BASE=$HOME/uPortal/uPortaltomcat && rainbowize tail -f $CATALINA_BASE/logs/catalina.out'
+alias cattail='rainbowize tail -f $TOMCAT_HOME/logs/catalina.out'
 
 # Git
 alias ga='git add '
@@ -97,12 +90,6 @@ alias gpu='git pull'
 alias gr='git reset'
 alias grm='git rm'
 alias gs='git status '
-
-# Because ls -l is almost impossible to type on the Dvorak layout
-alias ao='ls'
-alias aoe='ls -l'
-alias aou='ls -a'
-alias aoeu='ls -la'
 
 # Fix tmux colorscheme issues
 alias tmux="TERM=screen-256color-bce tmux"
@@ -277,8 +264,8 @@ export PATH=$M2:$PATH
 export ANT_HOME=$HOME/uPortal/ant
 export PATH=$PATH:$ANT_HOME/bin
 
-export CATALINA_HOME=$HOME/uPortal/tomcat
-export PATH=$PATH:$CATALINA_HOME
+export TOMCAT_HOME=$HOME/uPortal/tomcat
+export PATH=$PATH:$TOMCAT_HOME
 
 export GROOVY_HOME=$HOME/uPortal/groovy
 export PATH=$PATH:$GROOVY_HOME/bin
