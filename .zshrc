@@ -165,29 +165,6 @@ if [[ $@ == */* ]]; then
     fi
 }
 
-# Usage: build [(portlet)|uportal]
-function build {
-    cwd=$(pwd)
-    builtin cd ~/uPortal/uPortal
-    for arg in "$@"
-    do
-        if [[ $arg == "uportal" ]]; then
-            tomcatman -stop uportal
-            groovy -Dbuild.portlets.skip=true build.groovy &&
-            tomcatman -start uportal
-        elif [[ $arg == "init" ]]; then
-            tomcatman -stop uportal
-            groovy -Dbuild.ant.target="clean initportal" build.groovy &&
-            tomcatman -start uportal
-        elif [[ $arg == "portlets" ]]; then
-            groovy -Dbuild.portal.skip=true build.groovy
-        else
-            groovy -Dbuild.target.portlet=$arg build.groovy
-        fi
-    done
-    builtin cd $cwd
-}
-
 # Easily open files in Chrome
 function chrome {
     for i in "$@"; do
@@ -270,8 +247,8 @@ export PATH=$PATH:$TOMCAT_HOME
 export GROOVY_HOME=$HOME/uPortal/groovy
 export PATH=$PATH:$GROOVY_HOME/bin
 
-export PGDATA=/opt/PostgreSQL/9.2/
-export PATH=$PATH:$PGDATA/bin
+export HSQLDB_HOME='$HOME/uportal/hsqldb'
+export PATH=$PATH:$HSQLDB_HOME/bin
 
 export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
 
@@ -285,6 +262,7 @@ export ANDROID_HOME=/usr/local/android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:$HOME/Code/Scripts
+export PATH=$PATH:$HOME/uPortal/other/scripts
 
 export PATH=$PATH:$HOME/.play
 export PATH=$PATH:$HOME/.rvm/bin
