@@ -39,3 +39,4 @@ Thumbs.db
 # Vim generated files #
 #######################
 .netrwhist
+*.swp
