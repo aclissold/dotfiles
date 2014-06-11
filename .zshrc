@@ -299,8 +299,10 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Plugin sourcing (order matters for some)
-[[ -s /Users/aclissold/.autojump/etc/profile.d/autojump.sh ]] && source /Users/aclissold/.autojump/etc/profile.d/autojump.sh
-if [[ `uname` != 'Darwin' ]]; then
+if [[ `uname` == 'Darwin' ]]; then
+    [[ -s `brew --prefix`/etc/autojump.sh ]] && source `brew --prefix`/etc/autojump.sh
+else
+    [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
     source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
