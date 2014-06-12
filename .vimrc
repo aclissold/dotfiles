@@ -1,8 +1,6 @@
 " Enable Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
 
-map <F5> :w<CR>:!./deploy.sh<CR>:redraw<CR>
-
 """"""""""""""""""""""
 " GLOBAL VIM TOGGLES "
 """"""""""""""""""""""
@@ -42,19 +40,22 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Keymappings
-inoremap kk <ESC><Right>
-inoremap jj <ESC><Right>
 inoremap hh <ESC><Right>
+inoremap jj <ESC><Right>
+inoremap kk <ESC><Right>
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 nnoremap ' @
-nnoremap <C-s> :w<CR>
 nnoremap <C-p> :set paste!<CR>
 nnoremap <C-z> :set spell!<CR>
-map <C-f> :FixWhitespace<CR>
-map <C-g> :GitGutterToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
-map <C-b> :RainbowParenthesesToggle<CR>
-map <C-l> :set nu!<CR>
-map <C-h> :set hlsearch!<CR>
+noremap <C-f> :FixWhitespace<CR>
+noremap <C-g> :GitGutterToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-b> :RainbowParenthesesToggle<CR>
+noremap <C-l> :set nu!<CR>
+noremap <C-h> :set hlsearch!<CR>
 inoremap {{ {<CR>}<Esc>O
 
 """"""""""""""""""""""""""""""
@@ -85,8 +86,6 @@ autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
 autocmd Filetype ruby set tabstop=2
 autocmd Filetype ruby set shiftwidth=2
 autocmd Filetype ruby set softtabstop=2
-" automate switching to another terminal to test out a script
-autocmd FileType ruby map <F5> :w<CR>:!xdotool keydown super key Tab keyup super key Up KP_Enter <CR>:redraw<CR>
 
 " Clojure (overtone)
 autocmd FileType clojure RainbowParenthesesToggle
