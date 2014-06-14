@@ -58,13 +58,14 @@ if [[ `uname` == 'Darwin' ]]; then
     alias updatedb='sudo /usr/libexec/locate.updatedb'
 fi
 
-# Package managers
+# Staying up-to-date
 alias sag='sudo apt-get'
 if [[ `uname` == 'Darwin' ]]; then
     alias uu='brew update && brew upgrade'
 else
     alias uu='sudo apt-get update && sudo apt-get upgrade'
 fi
+alias dot='cd ~/.dotfiles; ./update.sh; cd -'
 
 # Programming languages
 alias py=python3
