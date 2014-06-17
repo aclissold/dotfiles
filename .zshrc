@@ -78,10 +78,10 @@ alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.ar
 alias cattail='rainbowize tail -f $TOMCAT_HOME/logs/catalina.out'
 
 # Git
-alias ga='git add '
-alias gb='git branch '
+alias ga='git add'
+alias gb='git branch'
 alias gc='git commit'
-alias gco='git checkout '
+alias gco='git checkout'
 alias gd='git diff'
 alias gh='git hist'
 alias gf='git fetch'
@@ -90,7 +90,8 @@ alias gp='git push'
 alias gpu='git pull'
 alias gr='git reset'
 alias grm='git rm'
-alias gs='git status '
+alias gs='git status'
+alias gv='git version'
 
 # Fix tmux colorscheme issues
 alias tmux="TERM=screen-256color-bce tmux"
