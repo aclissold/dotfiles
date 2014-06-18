@@ -69,7 +69,7 @@ alias dot='cd ~/.dotfiles; ./update.sh; cd -'
 
 # Programming languages
 alias py=python3
-alias swift='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift'
+alias swift='xcrun swift'
 
 # Quickly generate a new JSR-286 portlet
 alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.archetype -DarchetypeArtifactId=jsr286-archetype'
