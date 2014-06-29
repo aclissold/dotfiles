@@ -76,7 +76,7 @@ if [[ `uname` == 'Darwin' ]]; then
 else
     alias uu='sudo apt-get update && sudo apt-get upgrade'
 fi
-alias dot='cd ~/.dotfiles; ./update.sh; cd -'
+alias dot='builtin cd ~/.dotfiles; ./update.sh; builtin cd -'
 
 # Programming languages
 alias py=python3
@@ -313,7 +313,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Plugin sourcing (order matters for some)
 if [[ `uname` == 'Darwin' ]]; then
-    [[ -s `brew --prefix`/etc/autojump.sh ]] && source `brew --prefix`/etc/autojump.sh
+    source /usr/local/etc/autojump.zsh
 else
     [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
     source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
