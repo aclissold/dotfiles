@@ -16,8 +16,9 @@ setopt histignorealldups sharehistory
 
 # Vim keybindings in Zsh
 bindkey -v
-bindkey '\e[3~' delete-char
-bindkey '^R' history-incremental-search-backward
+
+chpwd() { bindkey -s "\C-b" "build $(basename $(pwd))\n" }
+bindkey -s "\C-u" "cd ..\n"
 
 # zsh-history-substring-search
 zmodload zsh/terminfo
@@ -28,8 +29,6 @@ else
     bindkey "$terminfo[kcuu1]" history-substring-search-up
     bindkey "$terminfo[kcud1]" history-substring-search-down
 fi
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
 
 ###########
 # History #
