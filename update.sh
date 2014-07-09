@@ -22,7 +22,7 @@ symlink () {
 if [[ -n $(pwd | grep "^$HOME/.dotfiles$") ]]
 then
     symlink .gitconfig .gitignore .tmux.conf .pylintrc .pythonrc .vim \
-        .vimrc .zsh .zshrc .irbrc .gemrc
+        .vimrc .zsh .zshrc .irbrc .gemrc .terminfo
 
     if [[ $(uname) == 'Darwin' ]]
     then
