@@ -34,3 +34,9 @@
 [submodule ".vim/bundle/lunarized-syntax"]
 	path = .vim/bundle/lunarized-syntax
 	url = https://github.com/aclissold/lunarized-syntax
+[submodule ".vim/bundle/vim-swift"]
+	path = .vim/bundle/vim-swift
+	url = https://github.com/toyamarinyon/vim-swift.git
+[submodule ".vim/bundle/dart-vim-plugin"]
+	path = .vim/bundle/dart-vim-plugin
+	url = https://github.com/dart-lang/dart-vim-plugin
