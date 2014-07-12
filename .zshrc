@@ -79,9 +79,7 @@ alias dot='builtin cd ~/.dotfiles; ./update.sh; builtin cd -'
 alias uud='uu && dot'
 alias sz='source ~/.zshrc'
 
-# Programming languages
 alias py=python3
-alias swift='xcrun swift'
 
 # Quickly generate a new JSR-286 portlet
 alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.archetype -DarchetypeArtifactId=jsr286-archetype'
