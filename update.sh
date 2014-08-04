@@ -22,13 +22,22 @@ symlink () {
 if [[ -n $(pwd | grep "^$HOME/.dotfiles$") ]]
 then
     symlink .gitconfig .gitignore .tmux.conf .pylintrc .pythonrc .vim \
-        .vimrc .zsh .zshrc .irbrc .gemrc .terminfo
+        .vimrc .zsh .zshrc .irbrc .gemrc
 
+    # Platform-specific symlinks
     if [[ $(uname) == 'Darwin' ]]
     then
         symlink .slate
+        if [[ ! -h $HOME/$file ]]
+        then
+            ln -s $(pwd)/.terminfodarwin $HOME/.terminfo
+        fi
     else
         symlink .fonts.conf
+        if [[ ! -h $HOME/$file ]]
+        then
+            ln -s $(pwd)/.terminfolinux $HOME/.terminfo
+        fi
     fi
 
     mkdir -p ~/.vimundo
