@@ -45,9 +45,10 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Keymappings
-inoremap kk <ESC><Right>
-inoremap jj <ESC><Right>
-inoremap hh <ESC><Right>
+let mapleader=","
+inoremap kk <Esc><Right>
+inoremap jj <Esc><Right>
+inoremap hh <Esc><Right>
 nnoremap ' @
 nnoremap <C-s> :w<CR>
 nnoremap <C-p> :set paste!<CR>
@@ -108,14 +109,20 @@ autocmd FileType xml set softtabstop=2
 " Markdown
 autocmd FileType markdown set textwidth=80
 
-"""""""""""""
-" GITGUTTER "
-"""""""""""""
+"""""""""""
+" PLUGINS "
+"""""""""""
 
+" GitGutter
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=40 cterm=bold
 highlight GitGutterChange ctermfg=178 cterm=bold
 highlight GitGutterDelete ctermfg=124 cterm=bold
+
+" NERDCommenter
+let NERDSpaceDelims=1
+map <leader>. <plug>NERDCommenterInvert
+map <leader>/ <plug>NERDCommenterSexy
 
 """"""""""""""""
 " COLORSCHEMES "
