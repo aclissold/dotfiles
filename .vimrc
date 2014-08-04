@@ -11,6 +11,9 @@ map <F5> :w<CR>:!./deploy.sh<CR>:redraw<CR>
 set nu
 set ai
 
+" Make backspace work as expected
+set backspace=2
+
 " Tab stuff
 set tabstop=4
 set shiftwidth=4
@@ -101,6 +104,9 @@ autocmd FileType css set softtabstop=2
 autocmd FileType xml set tabstop=2
 autocmd FileType xml set shiftwidth=2
 autocmd FileType xml set softtabstop=2
+
+" Markdown
+autocmd FileType markdown set textwidth=80
 
 """""""""""""
 " GITGUTTER "
