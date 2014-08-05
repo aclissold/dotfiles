@@ -28,13 +28,13 @@ then
     if [[ $(uname) == 'Darwin' ]]
     then
         symlink .slate
-        if [[ ! -h $HOME/$file ]]
+        if [[ ! -h $HOME/.terminfo ]]
         then
             ln -s $(pwd)/.terminfodarwin $HOME/.terminfo
         fi
     else
         symlink .fonts.conf
-        if [[ ! -h $HOME/$file ]]
+        if [[ ! -h $HOME/.terminfo ]]
         then
             ln -s $(pwd)/.terminfolinux $HOME/.terminfo
         fi
