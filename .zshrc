@@ -79,8 +79,6 @@ alias dot='builtin cd ~/.dotfiles; ./update.sh; builtin cd -'
 alias uud='uu && dot'
 alias sz='source ~/.zshrc'
 
-alias py=python3
-
 # Quickly generate a new JSR-286 portlet
 alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.archetype -DarchetypeArtifactId=jsr286-archetype'
 
@@ -92,6 +90,7 @@ alias ga='git add'
 alias gb='git branch'
 alias gc='git commit'
 alias gco='git checkout'
+alias gcar='git commit --amend --reset-author -C @'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gf='git fetch'
