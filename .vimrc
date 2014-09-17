@@ -72,17 +72,20 @@ autocmd FileType gitcommit setlocal spell textwidth=72
 autocmd FileType python set textwidth=79
 
 " Use actual tabs in C
-autocmd FileType c set expandtab!
+autocmd FileType c set noexpandtab
 
 " Go
-autocmd FileType go set expandtab!
+autocmd FileType go set noexpandtab
 autocmd FileType go set textwidth=100
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
+if exists("g:did_load_filetypes")
+    filetype off
+    filetype plugin indent off
+endif
+set runtimepath+=/usr/local/go/misc/vim
 set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
 filetype plugin indent on
 syntax on
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " Ruby
 autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
