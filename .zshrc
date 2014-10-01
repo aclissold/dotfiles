@@ -172,7 +172,7 @@ function putrm {
 
 # Minimalist git clone
 function clone {
-if [[ $@ == */* ]]; then
+    if [[ $@ == */* ]]; then
         repo=$@
         # truncate username / repo to username/repo
         repo=${repo/\ \/\ /\/}
@@ -180,6 +180,15 @@ if [[ $@ == */* ]]; then
     else
         # No "/" found--assume it's my own repo
         git clone git@github.com:aclissold/$@
+    fi
+}
+
+# Copy sha1sum to clipboard
+function sha {
+    if [[ `uname` == 'Darwin' ]]; then
+        shasum $1 | awk '{print($1)}' | tr -d '\n' | pbcopy
+    else
+        sha1sum $1 | awk '{print($1)}' | tr -d '\n' | xclip -sel clip
     fi
 }
 
