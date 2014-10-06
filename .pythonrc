@@ -1,4 +1,4 @@
-# Enable syntax completion in interpreter
-import readline
-import rlcompleter
-readline.parse_and_bind('tab: complete')
+# Enable tab completion in the interpreter
+import readline, rlcompleter
+readline.parse_and_bind('tab: complete')       # linux
+readline.parse_and_bind('bind ^I rl_complete') # darwin
