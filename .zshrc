@@ -257,6 +257,8 @@ if [[ `uname` == 'Darwin' ]]; then
     export M2_HOME=/usr/local/mvn
     export PATH=$PATH:$HOME/.apportable/SDK/bin
     export XML_CATALOG_FILES=/usr/local/etc/xml/catalog # for asciidoc
+    export FRAMEWORKS=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks
+
 else
     export M2_HOME=$HOME/uPortal/maven
     export JAVA_HOME=/usr/lib/jvm/default-java
