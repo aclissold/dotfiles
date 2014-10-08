@@ -1,19 +1,17 @@
 [user]
-	name = Andrew Clissold
+    name = Andrew Clissold
 [credential]
     helper = cache --timeout=3600
 [core]
-	autocrlf = false
-	safecrlf = true
-	excludesfile = ~/.gitignore
+    autocrlf = false
+    safecrlf = true
+    excludesfile = ~/.gitignore
 [alias]
-	hist = log --pretty=format:'%C(auto)%h %ad | %s%d %C(red)[%an]' --graph --date=short
-    amend = commit --amend -C HEAD
     home = config user.email "andrewclissold@gmail.com"
     work = config user.email "ajclisso@oakland.edu"
 [color]
-	ui = true
+    ui = true
 [push]
-	default = simple
+    default = simple
 [merge]
-	tool = vimdiff
+    tool = vimdiff
