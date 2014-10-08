@@ -112,6 +112,10 @@ autocmd FileType xml set softtabstop=2
 " Markdown
 autocmd FileType markdown set textwidth=80
 
+" LaTeX
+autocmd FileType tex set textwidth=80
+autocmd FileType tex set spell
+
 """""""""""
 " PLUGINS "
 """""""""""
