@@ -1,4 +1,8 @@
 # Enable tab completion in the interpreter
+import sys
 import readline, rlcompleter
-readline.parse_and_bind('tab: complete')       # linux
-readline.parse_and_bind('bind ^I rl_complete') # darwin
+
+if sys.platform == 'darwin':
+    readline.parse_and_bind('bind ^I rl_complete')
+else:
+    readline.parse_and_bind('tab: complete')
