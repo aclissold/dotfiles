@@ -266,7 +266,10 @@ function grepvim() {
 #########################
 # Environment Variables #
 #########################
-if [[ `uname` == 'Darwin' ]]; then
+if [[ `whoami` == 'ajclisso' ]]; then
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk/Contents/Home
+    export M2_HOME=$HOME/uPortal/maven
+elif [[ `uname` == 'Darwin' ]]; then
     export M2_HOME=/usr/local/mvn
     export PATH=$PATH:$HOME/.apportable/SDK/bin
     export XML_CATALOG_FILES=/usr/local/etc/xml/catalog # for asciidoc
