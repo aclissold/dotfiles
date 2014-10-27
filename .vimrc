@@ -1,8 +1,6 @@
 " Enable Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
 
-map <F5> :w<CR>:!./deploy.sh<CR>:redraw<CR>
-
 """"""""""""""""""""""
 " GLOBAL VIM TOGGLES "
 """"""""""""""""""""""
@@ -49,16 +47,14 @@ let mapleader=","
 inoremap kk <Esc><Right>
 inoremap jj <Esc><Right>
 inoremap hh <Esc><Right>
-nnoremap ' @
-nnoremap <C-s> :w<CR>
-nnoremap <C-p> :set paste!<CR>
-nnoremap <C-z> :set spell!<CR>
-map <C-f> :FixWhitespace<CR>
-map <C-g> :GitGutterToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
-map <C-b> :RainbowParenthesesToggle<CR>
-map <C-l> :set nu!<CR>
-map <C-h> :set hlsearch!<CR>
+nnoremap <leader>s :w<CR>
+nnoremap <leader>z :set spell!<CR>
+map <leader>b :RainbowParenthesesToggle<CR>
+map <leader>f :FixWhitespace<CR>
+map <leader>g :GitGutterToggle<CR>
+map <leader>h :set hlsearch!<CR>
+map <leader>l :set nu!<CR>
+map <leader>n :NERDTreeToggle<CR>
 inoremap {{ {<CR>}<Esc>O
 
 """"""""""""""""""""""""""""""
@@ -129,8 +125,10 @@ highlight GitGutterDelete ctermfg=124 cterm=bold
 " NERDCommenter
 let NERDSpaceDelims=1
 map <leader>. <plug>NERDCommenterInvert
+map <leader>h :set hlsearch!<CR>
 map <leader>/ <plug>NERDCommenterSexy
 
+map <leader>h :set hlsearch!<CR>
 """"""""""""""""
 " COLORSCHEMES "
 """"""""""""""""
