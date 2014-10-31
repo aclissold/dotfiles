@@ -10,7 +10,7 @@ git pull
 symlink () {
     for file in $@
     do
-        # Skip symlinks that have already been made
+        # Skip symlinks that have already been made.
         if [[ ! -h $HOME/$file ]]
         then
             echo 'New symlink: ~/'"$file"
@@ -19,12 +19,32 @@ symlink () {
     done
 }
 
+get () {
+    for package in $@
+    do
+        # Skip packages that have already been installed.
+        if ! hash $package 2>/dev/null
+        then
+            if [[ $(uname) == 'Darwin' ]]
+            then
+                brew install $package
+            else
+                sudo apt-get install $package
+            fi
+        fi
+    done
+}
+
 if [[ -n $(pwd | grep "^$HOME/.dotfiles$") ]]
 then
+    # Create symlinks for non-platform-specific dotfiles.
     symlink .gitconfig .gitignore .tmux.conf .pylintrc .pythonrc .vim \
         .vimrc .zsh .zshrc .irbrc
 
-    # Platform-specific symlinks
+    # Install packages.
+    get autojump bash cloc colordiff cowsay git tmux tree vim zsh
+
+    # Create platform-specific symlinks.
     if [[ $(uname) == 'Darwin' ]]
     then
         symlink .slate
@@ -40,9 +60,11 @@ then
         fi
     fi
 
+    # Ensure these directories exist.
     mkdir -p ~/.vimundo
     mkdir -p ~/.Trash
 
+    # Clone and/or update Vim and Zsh plugins.
     git submodule update --init
 else
     echo "Command failed. Please ensure that
