@@ -12,5 +12,5 @@ A backup of my Linux configuration files.
 * **.tmux.conf**: make tmux 1-indexed with the status bar at the top
 * **.vimrc**: super useful Vim settings and keymappings
 * **.zshrc**: super useful aliases and functions, among other things, and
-* **update.sh**: shell script to create these symlinks and clone submodules in one
-  step.
+* **update.py**: Python script to create these symlinks and clone submodules in
+  one step.
