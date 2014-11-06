@@ -50,11 +50,7 @@ def main():
 
 def run(command):
     """Execute a shell command, printing its output."""
-    try:
-        out = subprocess.check_output(command)
-        print(out.decode('utf-8'), end='')
-    except Exception as e:
-        pass # let commands print their own errors and continue execution
+    if subprocess.call(command) != 0: exit(1)
 
 def symlink(dotfiles, symlink_name=None):
     """Create symlinks for each dotfile in dotfiles that does not exist."""
@@ -74,7 +70,10 @@ def symlink(dotfiles, symlink_name=None):
         print('New symlink: ~/' + symlink_name)
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        exit(1)
 
 # get () {
 #     for package in $@
