@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-
-# Creates symbolic links to all files contained within this repository to the
-# correct locations, e.g. when setting up a new machine. This is harmless to
-# run if files or symlinks already exist where these ones belong.
+# -*- coding: utf-8 -*-
+"""Synchronizes the config files and commands of a development environment."""
 
 import os
 import platform
@@ -12,35 +10,33 @@ import subprocess
 HOME = os.environ['HOME']
 SYSTEM = platform.system()
 
-dotfiles = ['.gitconfig', '.gitignore', '.tmux.conf', '.pylintrc', '.pythonrc',
-    '.vim', '.vimrc', '.zsh', '.zshrc', '.irbrc']
+DOTFILES = ['.gitconfig', '.gitignore', '.tmux.conf', '.pylintrc', '.pythonrc',
+            '.vim', '.vimrc', '.zsh', '.zshrc', '.irbrc']
 
-# TODO: handle adding PPAs.
 # ['command name', 'install name']
-packages = [
-        ['cloc', 'cloc'],
-        ['colordiff', 'colordiff'],
-        ['cowsay', 'cowsay'],
-        ['git', 'git'],
-        ['convert', 'imagemagick'],
-        ['tmux', 'tmux'],
-        ['tree', 'tree'],
-        ['vim', 'vim'],
-        ['zsh', 'zsh']
-    ]
+PACKAGES = [['cloc', 'cloc'],
+            ['colordiff', 'colordiff'],
+            ['cowsay', 'cowsay'],
+            ['git', 'git'],
+            ['convert', 'imagemagick'],
+            ['tmux', 'tmux'],
+            ['tree', 'tree'],
+            ['vim', 'vim'],
+            ['zsh', 'zsh']]
 
 if SYSTEM == 'Darwin':
-    dotfiles.append('.slate')
+    DOTFILES.append('.slate')
 else:
-    dotfiles.append('.fonts.conf')
+    DOTFILES.append('.fonts.conf')
 
 def main():
     """Set up or synchronize dotfiles."""
     # Abort if not run from the root of the repository.
     if os.getcwd() != os.path.join(HOME, '.dotfiles'):
         usage = ('Update failed. Please ensure that\n' +
-        '\t1) this repository exists at ~/.dotfiles, and\n' +
-        '\t2) this command is being executed from within that directory.')
+                 '\t1) this repository exists at ~/.dotfiles, and\n' +
+                 '\t2) this command is being executed from within that' +
+                 'directory.')
 
         print(usage)
         exit(1)
@@ -49,7 +45,7 @@ def main():
     run(['git', 'pull'])
 
     # Create symlinks for non-platform-specific dotfiles.
-    symlink(dotfiles)
+    symlink(DOTFILES)
 
     # Create symlinks for platform-specific dotfiles.
     if SYSTEM == 'Darwin':
@@ -58,7 +54,7 @@ def main():
         symlink(['.terminfolinux'], '.terminfo')
 
     # Install commonly used packages.
-    get(packages)
+    get(PACKAGES)
 
     # Clone and/or update Vim and Zsh plugins.
     run(['git', 'submodule', 'update', '--init'])
@@ -69,7 +65,8 @@ def main():
 
 def run(command):
     """Execute a shell command, exiting if an error occurs."""
-    if subprocess.call(command) != 0: exit(1)
+    if subprocess.call(command) != 0:
+        exit(1)
 
 def symlink(dotfiles, symlink_name=None):
     """Create symlinks for each dotfile in dotfiles that does not exist."""
