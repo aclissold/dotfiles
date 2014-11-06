@@ -6,14 +6,30 @@
 
 import os
 import platform
+import shutil
 import subprocess
 
 HOME = os.environ['HOME']
+SYSTEM = platform.system()
 
 dotfiles = ['.gitconfig', '.gitignore', '.tmux.conf', '.pylintrc', '.pythonrc',
     '.vim', '.vimrc', '.zsh', '.zshrc', '.irbrc']
 
-if platform.system() == 'Darwin':
+# TODO: handle adding PPAs.
+# ['command name', 'install name']
+packages = [
+        ['cloc', 'cloc'],
+        ['colordiff', 'colordiff'],
+        ['cowsay', 'cowsay'],
+        ['git', 'git'],
+        ['convert', 'imagemagick'],
+        ['tmux', 'tmux'],
+        ['tree', 'tree'],
+        ['vim', 'vim'],
+        ['zsh', 'zsh']
+    ]
+
+if SYSTEM == 'Darwin':
     dotfiles.append('.slate')
 else:
     dotfiles.append('.fonts.conf')
@@ -36,20 +52,23 @@ def main():
     symlink(dotfiles)
 
     # Create symlinks for platform-specific dotfiles.
-    if platform.system() == 'Darwin':
+    if SYSTEM == 'Darwin':
         symlink(['.terminfodarwin'], '.terminfo')
     else:
         symlink(['.terminfolinux'], '.terminfo')
+
+    # Install commonly used packages.
+    get(packages)
+
+    # Clone and/or update Vim and Zsh plugins.
+    run(['git', 'submodule', 'update', '--init'])
 
     # Ensure these directories exist.
     os.makedirs(os.path.join(HOME, '.vimundo'), exist_ok=True)
     os.makedirs(os.path.join(HOME, '.Trash'), exist_ok=True)
 
-    # Clone and/or update Vim and Zsh plugins.
-    run(['git', 'submodule', 'update', '--init'])
-
 def run(command):
-    """Execute a shell command, printing its output."""
+    """Execute a shell command, exiting if an error occurs."""
     if subprocess.call(command) != 0: exit(1)
 
 def symlink(dotfiles, symlink_name=None):
@@ -69,26 +88,24 @@ def symlink(dotfiles, symlink_name=None):
         os.symlink(dotfile_path, symlink_path)
         print('New symlink: ~/' + symlink_name)
 
+def get(packages):
+    """Install packages using the system's package manager."""
+    if SYSTEM == 'Darwin':
+        package_manager = ['brew']
+    else:
+        package_manager = ['sudo', 'apt-get']
+
+    # Skip packages that have already been installed.
+    packages_to_install = []
+    for package in packages:
+        if shutil.which(package[0]) == None:
+            packages_to_install.append(package[1])
+    if len(packages_to_install) > 0:
+        command = package_manager + ['install'] + packages_to_install
+        run(command)
+
 if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
         exit(1)
-
-# get () {
-#     for package in $@
-#     do
-#         # Skip packages that have already been installed.
-#         if ! hash $package 2>/dev/null
-#         then
-#             if [[ $(uname) == 'Darwin' ]]
-#             then
-#                 brew install $package
-#             else
-#                 sudo apt-get install $package
-#             fi
-#         fi
-#     done
-# }
-#
-# get autojump bash cloc colordiff cowsay git tmux tree vim zsh
