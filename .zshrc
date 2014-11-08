@@ -75,7 +75,7 @@ if [[ `uname` == 'Darwin' ]]; then
 else
     alias uu='sudo apt-get update && sudo apt-get upgrade'
 fi
-alias dot='builtin cd ~/.dotfiles; ./update.sh; builtin cd -'
+alias dot='builtin cd ~/.dotfiles; ./update.py; builtin cd -'
 alias uud='uu && dot'
 alias sz='source ~/.zshrc'
 
