@@ -72,10 +72,12 @@ def symlink(dotfiles, symlink_name=None):
     """Create symlinks for each dotfile in dotfiles that does not exist."""
     for dotfile in dotfiles:
         # Construct paths.
-        if symlink_name is None:
-            symlink_name = dotfile
+        if symlink_name is not None:
+            symlink = symlink_name
+        else:
+            symlink = dotfile
         dotfile_path = os.path.join(HOME, '.dotfiles', dotfile)
-        symlink_path = os.path.join(HOME, symlink_name)
+        symlink_path = os.path.join(HOME, symlink)
 
         # Skip symlinks that have already been made.
         if os.path.islink(symlink_path):
@@ -83,7 +85,7 @@ def symlink(dotfiles, symlink_name=None):
 
         # Create the symlink.
         os.symlink(dotfile_path, symlink_path)
-        print('New symlink: ~/' + symlink_name)
+        print('New symlink: ~/' + symlink)
 
 def get(packages):
     """Install packages using the system's package manager."""
