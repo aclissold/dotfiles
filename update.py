@@ -29,6 +29,7 @@ if SYSTEM == 'Darwin':
     PACKAGES.append(['cliclick', 'cliclick'])
 else:
     DOTFILES.append('.fonts.conf')
+    PACKAGES.append(['xclip', 'xclip'])
 
 def main():
     """Set up or synchronize dotfiles."""
