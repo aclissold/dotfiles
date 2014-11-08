@@ -1,3 +1,18 @@
+// Zooming
+var zoom = slate.operation("move", {
+    "x": "screenOriginX",
+    "y": "screenOriginY",
+    "width": "screenSizeX",
+    "height": "screenSizeY"
+});
+
+var unZoom = slate.operation("move", {
+    "x": "0.125*screenSizeX",
+    "y": "0.125*screenSizeY",
+    "width": "0.75*screenSizeX",
+    "height": "0.75*screenSizeY"
+});
+
 // Pushing to the left 2/3 and right 1/3
 
 var pushLeft = slate.operation("push", {
@@ -39,6 +54,8 @@ function moveWindowToNextSpace(win) {
 
 // Bindings
 
+slate.bind("up:ctrl,alt,cmd", zoom);
+slate.bind("down:ctrl,alt,cmd", unZoom);
 slate.bind("left:ctrl,alt,cmd", pushWindowLeft);
 slate.bind("right:ctrl,alt,cmd", pushWindowRight);
 slate.bind("left:ctrl,cmd", moveWindowToPreviousSpace);
