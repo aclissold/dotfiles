@@ -25,7 +25,8 @@ PACKAGES = [['cloc', 'cloc'],
             ['zsh', 'zsh']]
 
 if SYSTEM == 'Darwin':
-    DOTFILES.append('.slate')
+    DOTFILES.append('.slate.js')
+    PACKAGES.append(['cliclick', 'cliclick'])
 else:
     DOTFILES.append('.fonts.conf')
 
