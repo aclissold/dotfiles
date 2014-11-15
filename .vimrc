@@ -1,46 +1,33 @@
 " Enable Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
 
-""""""""""""""""""""""
-" GLOBAL VIM TOGGLES "
-""""""""""""""""""""""
+""""""""""""""""""
+" GLOBAL TOGGLES "
+""""""""""""""""""
 
-" Line numbering and auto-indenting
+" Enable line numbers and auto-indent
 set nu
 set ai
 
 " Make backspace work as expected
 set backspace=2
 
-" Tab stuff
+" Use 4-space tabs by default
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
 
-" Persistent undo
+" Persist undo
 set undofile
 set undodir=$HOME/.vimundo/
 
-" 'g' flag for :%s on by default
+" Turn the 'g' flag for :%s on by default
 set gdefault
 
-" Use hlsearch by default
-set hlsearch
-
-"""""""""""""""""""
-" CUSTOM SETTINGS "
-"""""""""""""""""""
-
-" Auto-complete shortcut -> phrase
-iabbrev sout System.out.println();<Left><Left>
-
-" Restore cursor upon re-opening a file
-" (Note: has a bug where it doesn't save cursor index on top line of file)
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-" Close Vim if NERDTree is the only window left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+""""""""""""""""""""""""""
+" MISCELLANEOUS SETTINGS "
+""""""""""""""""""""""""""
 
 " Keymappings
 let mapleader=","
@@ -56,6 +43,15 @@ map <leader>h :set hlsearch!<CR>
 map <leader>l :set nu!<CR>
 map <leader>n :NERDTreeToggle<CR>
 inoremap {{ {<CR>}<Esc>O
+
+" Auto-complete shortcut -> phrase
+iabbrev sout System.out.println();<Left><Left>
+
+" Restore cursor upon re-opening a file
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+" Close Vim if NERDTree is the only window left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 """"""""""""""""""""""""""""""
 " LANGUAGE-SPECIFIC SETTINGS "
@@ -88,8 +84,6 @@ autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
 autocmd Filetype ruby set tabstop=2
 autocmd Filetype ruby set shiftwidth=2
 autocmd Filetype ruby set softtabstop=2
-" automate switching to another terminal to test out a script
-autocmd FileType ruby map <F5> :w<CR>:!xdotool keydown super key Tab keyup super key Up KP_Enter <CR>:redraw<CR>
 
 " Clojure (overtone)
 autocmd FileType clojure RainbowParenthesesToggle
@@ -125,10 +119,8 @@ highlight GitGutterDelete ctermfg=124 cterm=bold
 " NERDCommenter
 let NERDSpaceDelims=1
 map <leader>. <plug>NERDCommenterInvert
-map <leader>h :set hlsearch!<CR>
 map <leader>/ <plug>NERDCommenterSexy
 
-map <leader>h :set hlsearch!<CR>
 """"""""""""""""
 " COLORSCHEMES "
 """"""""""""""""
