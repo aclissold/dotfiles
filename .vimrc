@@ -25,6 +25,8 @@ set undodir=$HOME/.vimundo/
 " Turn the 'g' flag for :%s on by default
 set gdefault
 
+set ruler
+
 """"""""""""""""""""""""""
 " MISCELLANEOUS SETTINGS "
 """"""""""""""""""""""""""
