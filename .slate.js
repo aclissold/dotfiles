@@ -29,12 +29,12 @@ function unZoom(win) {
 
 var pushLeft = slate.operation("push", {
     "direction": "left",
-    "style": "bar-resize:(2*(screenSizeX/3)-34)"
+    "style": "bar-resize:(2*(screenSizeX/3)-63)"
 });
 
 var pushRight = slate.operation("push", {
     "direction": "right",
-    "style": "bar-resize:(screenSizeX/3+34)"
+    "style": "bar-resize:(screenSizeX/3+63)"
 });
 
 function pushWindowRight(win) {
