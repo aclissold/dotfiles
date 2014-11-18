@@ -213,7 +213,7 @@ function chrome {
 }
 
 # Trash commands
-function del {
+function d {
     mv -i "$@" ~/.Trash/
 }
 function emptytrash {
