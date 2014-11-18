@@ -295,7 +295,7 @@ export PATH=$PATH:$GROOVY_HOME/bin
 export HSQLDB_HOME='$HOME/uportal/hsqldb'
 export PATH=$PATH:$HSQLDB_HOME/bin
 
-export JAVA_OPTS='-server -XX:MaxPermSize=512m -Xms1024m -Xmx2048m'
+export JAVA_OPTS='-server -Xms1024m -Xmx2048m'
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/Code/Go
