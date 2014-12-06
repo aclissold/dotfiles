@@ -44,6 +44,7 @@ map <leader>g :GitGutterToggle<CR>
 map <leader>h :set hlsearch!<CR>
 map <leader>l :set nu!<CR>
 map <leader>n :NERDTreeToggle<CR>
+map <leader>p :set paste!<CR>
 inoremap {{ {<CR>}<Esc>O
 
 " Auto-complete shortcut -> phrase
