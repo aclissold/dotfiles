@@ -19,9 +19,6 @@
 [submodule ".vim/bundle/vim-trailing-whitespace"]
 	path = .vim/bundle/vim-trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace
-[submodule ".vim/bundle/RelOps"]
-	path = .vim/bundle/RelOps
-	url = https://github.com/vim-scripts/RelOps
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
