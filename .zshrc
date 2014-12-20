@@ -1,9 +1,12 @@
 setopt histignorealldups sharehistory
 
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+HISTFILE=~/.zsh_history
+
 #############################
 # Index:                    #
 #   * Keybindings           #
-#   * History               #
 #   * Aliases               #
 #   * Functions             #
 #   * Environment Variables #
@@ -17,7 +20,7 @@ setopt histignorealldups sharehistory
 # Vim keybindings in Zsh
 bindkey -v
 
-chpwd() { bindkey -s "\C-b" "build $(basename $(pwd))\n" }
+# cd .. easily
 bindkey -s "\C-u" "cd ..\n"
 
 # zsh-history-substring-search
@@ -29,14 +32,6 @@ else
     bindkey "$terminfo[kcuu1]" history-substring-search-up
     bindkey "$terminfo[kcud1]" history-substring-search-down
 fi
-
-###########
-# History #
-###########
-
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
-HISTFILE=~/.zsh_history
 
 ###########
 # Aliases #
@@ -79,12 +74,6 @@ alias dot='builtin cd ~/.dotfiles; ./update.py; builtin cd -'
 alias uud='uu && dot'
 alias sz='source ~/.zshrc'
 
-# Quickly generate a new JSR-286 portlet
-alias newportlet='mvn archetype:generate -DarchetypeGroupId=org.jasig.portlet.archetype -DarchetypeArtifactId=jsr286-archetype'
-
-# tail catalina.out
-alias cattail='rainbowize tail -f $TOMCAT_HOME/logs/catalina.out'
-
 # Git
 alias ga='git add'
 alias gb='git branch'
@@ -115,6 +104,7 @@ alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grm='git rm'
+alias grv='git revert'
 alias gs='git status'
 alias gsa='git stash'
 alias gsh='git show'
@@ -133,54 +123,24 @@ fi
 # Functions #
 #############
 
-# Quickly go to a directory
-#
-# Layout of command:
-#     cd `find -maxdepth 5 ...
-#
-#     (excluded directories and files)
-#
-#     ... -type d -name $1 | head -1`
-goto() {
-    builtin cd `find ~ -maxdepth 5       \
-                                         \
-    ! -path '*/.*/*'                     \
-    ! -path '*/uPortal/*'                \
-    ! -path '*/tomcat/webapps/*'         \
-    ! -path '*/uPortal/overlay/admin/*'  \
-    ! -name '.*'                         \
-                                         \
-    -type d -name $1 | head -1`
-}
-
 # Make and cd into a dir
 function mkcd() { mkdir -p $(pwd)/$@ && cd $(pwd)/$@ }
 
-# "Copy" file to ~/.clipboard
-function yank {
-    touch ~/.clipboard
-    for i in "$@"; do
-      if [[ $i != /* ]]; then i=$PWD/$i; fi
-      i=${i//\\/\\\\}; i=${i//$'\n'/$'\\\n'}
-      printf '%s\n' "$i"
-    done >> ~/.clipboard
+# Copy file contents to clipboard
+function y {
+    if [[ `uname` == 'Darwin' ]]; then
+        cat "$@" | pbcopy
+    else
+        cat "$@" | xclip -sel clip
+    fi
 }
 
-# "Paste" file from ~/.clipboard
-function put {
-    while IFS= read src; do
-      cp -Rp "$src" .
-    done < ~/.clipboard
-    rm ~/.clipboard
-}
-
-# Pretend "copy" was "cut"
-function putrm {
-    while IFS= read src; do
-      mv "$src" .
-    done < ~/.clipboard
-    rm ~/.clipboard
-}
+# Paste file contents from clipboard
+if [[ `uname` == 'Darwin' ]]; then
+    alias p='pbpaste'
+else
+    alias p='xclip -o'
+fi
 
 # Minimalist git clone
 function clone {
@@ -204,13 +164,6 @@ function sha {
     fi
 }
 
-# Easily open files in Chrome
-function chrome {
-    for i in "$@"; do
-        google-chrome $(pwd)/$i > /dev/null
-    done
-}
-
 # Trash commands
 function d {
     mv -i "$@" ~/.Trash/
@@ -219,82 +172,16 @@ function emptytrash {
     rm -rf ~/.Trash/*
 }
 
-# Grep through specific file extensions
-function greptype {
-    if [[ $# != 2 ]] then;
-        # filetype should be "java", not ".java" or "*.java"
-        echo 'Usage: greptype <filetype> <pattern>'
-    else
-        find . -type f -name "*.$1" -exec grep --color=auto "$2" {} + 2>/dev/null
-    fi
-}
-
-# Magic Grep Part I: cd into directories where grep matches are found
-function grepcd() {
-    # Print the results of grep, with numbers prepended.
-    grep --color=always -r "$@" | nl
-    # if grep matched anything
-    if [[ $(echo $pipestatus | awk '{print $1}') == 0 ]]; then
-        # prompt for a number
-        echo -n "Enter the number of the path to cd into (q quits): "
-        read linenumber
-        # if a number was entered
-        if [[ -n $(echo $linenumber | grep '^[0-9]*$') ]]; then
-            # cd to the path of the file that was preprended by number entered
-            cd `grep -r $@ | sed "s/:.*//" | xargs echo | awk -v path=$linenumber '{print $path}' | xargs dirname`
-        fi
-    fi
-}
-
-# Magic Grep Part II: Vim into a grep match at the match's line number
-function grepvim() {
-    grep --color=always -rn "$@" | nl
-    # if grep matched anything
-    if [[ $(echo $pipestatus | awk '{print $1}') == 0 ]]; then
-        # prompt for a number
-        echo -n "Enter number of the file you want to edit (q quits): "
-        read linenumber
-        # if a number was entered
-        if [[ -n $(echo $linenumber | grep '^[0-9]*$') ]]; then
-            # open Vim to the match's position
-            vim `grep -nr $@ | sed 's/ //g' | sed 's/:[^:+][^:].*/:/' | sed 's/:/ /g' | xargs echo | awk -v path=$linenumber '{print $(path*2-1) " +" $(path*2)}'`
-        fi
-    fi
-}
-
 #########################
 # Environment Variables #
 #########################
-if [[ `whoami` == 'ajclisso' ]]; then
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk/Contents/Home
-    export M2_HOME=$HOME/uPortal/maven
-elif [[ `uname` == 'Darwin' ]]; then
+if [[ `uname` == 'Darwin' ]]; then
     export M2_HOME=/usr/local/mvn
-    export PATH=$PATH:$HOME/.apportable/SDK/bin
+    export M2=$M2_HOME/bin
+    export PATH=$M2:$PATH
     export XML_CATALOG_FILES=/usr/local/etc/xml/catalog # for asciidoc
     export FRAMEWORKS=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks
-
-else
-    export M2_HOME=$HOME/uPortal/maven
-    export JAVA_HOME=/usr/lib/jvm/default-java
-    export PATH=$JAVA_HOME/bin:$PATH
 fi
-export M2=$M2_HOME/bin
-export PATH=$M2:$PATH
-
-export ANT_HOME=$HOME/uPortal/ant
-export PATH=$PATH:$ANT_HOME/bin
-
-export TOMCAT_HOME=$HOME/uPortal/tomcat
-export PATH=$PATH:$TOMCAT_HOME
-
-export GROOVY_HOME=$HOME/uPortal/groovy
-export PATH=$PATH:$GROOVY_HOME/bin
-
-export HSQLDB_HOME='$HOME/uportal/hsqldb'
-export PATH=$PATH:$HSQLDB_HOME/bin
-
-export JAVA_OPTS='-server -Xms1024m -Xmx2048m'
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/Code/Go
@@ -306,9 +193,7 @@ export ANDROID_HOME=/usr/local/android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:$HOME/Code/Scripts
-export PATH=$PATH:$HOME/uPortal/other/scripts
 
-export PATH=$PATH:$HOME/.play
 export PATH=$PATH:$HOME/.rvm/bin
 
 ################
