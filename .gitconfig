@@ -8,7 +8,7 @@
     excludesfile = ~/.gitignore
 [alias]
     home = config user.email "andrewclissold@gmail.com"
-    work = config user.email "aclisso@us.ibm.com"
+    work = config user.email "andrew.clissold@dominos.com"
 [color]
     ui = true
 [push]
