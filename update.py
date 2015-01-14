@@ -14,7 +14,8 @@ DOTFILES = ['.gitconfig', '.gitignore', '.tmux.conf', '.pylintrc', '.pythonrc',
             '.vim', '.vimrc', '.zsh', '.zshrc', '.irbrc']
 
 # ['command name', 'install name']
-PACKAGES = [['cloc', 'cloc'],
+PACKAGES = [['autojump', 'autojump'],
+            ['cloc', 'cloc'],
             ['colordiff', 'colordiff'],
             ['cowsay', 'cowsay'],
             ['git', 'git'],
@@ -52,6 +53,7 @@ def main():
     # Create symlinks for platform-specific dotfiles.
     if SYSTEM == 'Darwin':
         symlink(['.terminfodarwin'], '.terminfo')
+        symlink(['.vimrc'], '.xvimrc')
     else:
         symlink(['.terminfolinux'], '.terminfo')
 
