@@ -14,8 +14,7 @@ DOTFILES = ['.gitconfig', '.gitignore', '.tmux.conf', '.pylintrc', '.pythonrc',
             '.vim', '.vimrc', '.zsh', '.zshrc', '.irbrc']
 
 # ['command name', 'install name']
-PACKAGES = [['autojump', 'autojump'],
-            ['cloc', 'cloc'],
+PACKAGES = [['cloc', 'cloc'],
             ['colordiff', 'colordiff'],
             ['cowsay', 'cowsay'],
             ['git', 'git'],
