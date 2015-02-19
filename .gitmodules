@@ -43,3 +43,6 @@
 [submodule ".vim/bundle/ctrlp.vim"]
 	path = .vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim
+[submodule ".zsh/go.zsh"]
+	path = .zsh/go.zsh
+	url = https://gist.github.com/aclissold/b71b575884ddfc692f06
