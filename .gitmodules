@@ -25,9 +25,6 @@
 [submodule ".vim/bundle/rainbow_parenthesis"]
 	path = .vim/bundle/rainbow_parenthesis
 	url = https://github.com/kien/rainbow_parentheses.vim
-[submodule ".vim/bundle/vim-javascript-syntax"]
-	path = .vim/bundle/vim-javascript-syntax
-	url = https://github.com/jelera/vim-javascript-syntax
 [submodule ".vim/bundle/lunarized-syntax"]
 	path = .vim/bundle/lunarized-syntax
 	url = https://github.com/aclissold/lunarized-syntax
@@ -46,3 +43,6 @@
 [submodule ".zsh/go.zsh"]
 	path = .zsh/go.zsh
 	url = https://gist.github.com/aclissold/b71b575884ddfc692f06
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
