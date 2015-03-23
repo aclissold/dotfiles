@@ -165,6 +165,11 @@ function sha {
     fi
 }
 
+# Human-readable disk usage of large files
+function dug {
+    du -h "$@" | grep "G\t"
+}
+
 # Trash commands
 function d {
     mv -i "$@" ~/.Trash/
