@@ -100,6 +100,7 @@ autocmd FileType css set softtabstop=2
 autocmd FileType scss set tabstop=2
 autocmd FileType scss set shiftwidth=2
 autocmd FileType scss set softtabstop=2
+autocmd FileType javascript set textwidth=80
 autocmd FileType javascript set tabstop=2
 autocmd FileType javascript set shiftwidth=2
 autocmd FileType javascript set softtabstop=2
