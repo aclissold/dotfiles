@@ -62,6 +62,17 @@ def main():
     # Clone and/or update Vim and Zsh plugins.
     run(['git', 'submodule', 'update', '--init'])
 
+    # Symlink Xcode colortheme (special case)
+    if SYSTEM == 'Darwin':
+        symlink_path = os.path.join(HOME, 'Library', 'Developer', 'Xcode',
+            'UserData', 'FontAndColorThemes')
+        os.makedirs(symlink_path, exist_ok=True)
+        symlink_path = os.path.join(symlink_path, 'Lunarized.dvtcolortheme')
+        if not os.path.islink(symlink_path):
+            dotfile_path = os.path.join(HOME, '.dotfiles', '.vim', 'bundle',
+                    'lunarized-syntax', 'Lunarized.dvtcolortheme')
+            os.symlink(dotfile_path, symlink_path)
+
     # Ensure these directories exist.
     os.makedirs(os.path.join(HOME, '.vimundo'), exist_ok=True)
     os.makedirs(os.path.join(HOME, '.Trash'), exist_ok=True)
