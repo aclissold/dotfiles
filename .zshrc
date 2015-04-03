@@ -170,6 +170,11 @@ function dug {
     du -h "$@" | grep "G\t"
 }
 
+# Find IP
+function myip {
+    dig +short myip.opendns.com @resolver1.opendns.com
+}
+
 # Trash commands
 function d {
     mv -i "$@" ~/.Trash/
