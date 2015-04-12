@@ -24,6 +24,12 @@ PACKAGES = [['cloc', 'cloc'],
             ['vim', 'vim'],
             ['zsh', 'zsh']]
 
+CASKS = [['Skim', 'skim'],
+         ['Google Chrome', 'google-chrome'],
+         ['Slate', 'slate'],
+         ['Alfred 2', 'alfred'],
+         ['Spotify', 'spotify']]
+
 if SYSTEM == 'Darwin':
     DOTFILES.append('.slate.js')
     PACKAGES.append(['cliclick', 'cliclick'])
@@ -57,7 +63,11 @@ def main():
         symlink(['.terminfolinux'], '.terminfo')
 
     # Install commonly used packages.
-    get(PACKAGES)
+    if SYSTEM == 'Darwin':
+        get(PACKAGES, ['brew'])
+        get(CASKS, ['brew', 'cask'])
+    else:
+        get(PACKAGES, ['sudo', 'apt-get'])
 
     # Clone and/or update Vim and Zsh plugins.
     run(['git', 'submodule', 'update', '--init'])
@@ -101,19 +111,20 @@ def symlink(dotfiles, symlink_name=None):
         os.symlink(dotfile_path, symlink_path)
         print('New symlink: ~/' + symlink)
 
-def get(packages):
+def get(packages, package_manager):
     """Install packages using the system's package manager."""
-    if SYSTEM == 'Darwin':
-        package_manager = ['brew']
-    else:
-        package_manager = ['sudo', 'apt-get']
-
     # Skip packages that have already been installed.
     packages_to_install = []
     for package in packages:
-        if shutil.which(package[0]) == None:
-            packages_to_install.append(package[1])
+        if 'cask' in package_manager and not os.path.islink(os.path.join(
+            HOME, 'Applications', package[0] + '.app')):
+                packages_to_install.append(package[1])
+        else:
+            if shutil.which(package[0]) == None:
+                packages_to_install.append(package[1])
+
     if len(packages_to_install) > 0:
+        # Install packages.
         command = package_manager + ['install'] + packages_to_install
         run(command)
 
