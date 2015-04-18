@@ -116,9 +116,11 @@ def get(packages, package_manager):
     # Skip packages that have already been installed.
     packages_to_install = []
     for package in packages:
-        if 'cask' in package_manager and not os.path.islink(os.path.join(
-            HOME, 'Applications', package[0] + '.app')):
-                packages_to_install.append(package[1])
+        path = os.path.join(HOME, 'Applications', package[0] + '.app')
+        if 'cask' in package_manager and os.path.islink(path):
+            pass
+        elif 'cask' in package_manager and not os.path.islink(path):
+            packages_to_install.append(package[1])
         else:
             if shutil.which(package[0]) == None:
                 packages_to_install.append(package[1])
