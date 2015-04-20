@@ -78,7 +78,7 @@ def main():
             'UserData', 'FontAndColorThemes')
         os.makedirs(symlink_path, exist_ok=True)
         symlink_path = os.path.join(symlink_path, 'Lunarized.dvtcolortheme')
-        if not os.path.islink(symlink_path):
+        if not os.path.exists(symlink_path):
             dotfile_path = os.path.join(HOME, '.dotfiles', '.vim', 'bundle',
                     'lunarized-syntax', 'Lunarized.dvtcolortheme')
             os.symlink(dotfile_path, symlink_path)
