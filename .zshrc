@@ -66,7 +66,7 @@ fi
 # Staying up-to-date
 alias sag='sudo apt-get'
 if [[ `uname` == 'Darwin' ]]; then
-    alias uu='brew update && brew upgrade'
+    alias uu='brew update && brew upgrade --all'
 else
     alias uu='sudo apt-get update && sudo apt-get upgrade'
 fi
