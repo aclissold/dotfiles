@@ -33,6 +33,7 @@ CASKS = [['Skim', 'skim'],
 if SYSTEM == 'Darwin':
     DOTFILES.append('.slate.js')
     PACKAGES.append(['cliclick', 'cliclick'])
+    PACKAGES.append(['reattach-to-user-namespace', 'reattach-to-user-namespace'])
 else:
     DOTFILES.append('.fonts.conf')
     PACKAGES.append(['xclip', 'xclip'])
