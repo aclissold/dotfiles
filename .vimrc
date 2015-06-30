@@ -82,7 +82,6 @@ set runtimepath+=/usr/local/go/misc/vim
 set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
 filetype plugin indent on
 syntax on
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " Ruby
 autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
