@@ -179,6 +179,9 @@ function sha {
 function dug {
     du -h "$@" | grep "G\t"
 }
+function dum {
+    du -h "$@" | grep "M\t"
+}
 
 # Find IP
 function myip {
