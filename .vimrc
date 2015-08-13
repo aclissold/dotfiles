@@ -93,22 +93,22 @@ autocmd Filetype ruby set softtabstop=2
 autocmd FileType clojure RainbowParenthesesToggle
 
 " Web
-autocmd FileType html set tabstop=2
-autocmd FileType html set shiftwidth=2
-autocmd FileType html set softtabstop=2
-autocmd FileType css set tabstop=2
-autocmd FileType css set shiftwidth=2
-autocmd FileType css set softtabstop=2
-autocmd FileType scss set tabstop=2
-autocmd FileType scss set shiftwidth=2
-autocmd FileType scss set softtabstop=2
+autocmd FileType html set tabstop=4
+autocmd FileType html set shiftwidth=4
+autocmd FileType html set softtabstop=4
+autocmd FileType css set tabstop=4
+autocmd FileType css set shiftwidth=4
+autocmd FileType css set softtabstop=4
+autocmd FileType scss set tabstop=4
+autocmd FileType scss set shiftwidth=4
+autocmd FileType scss set softtabstop=4
 autocmd FileType javascript set textwidth=80
-autocmd FileType javascript set tabstop=2
-autocmd FileType javascript set shiftwidth=2
-autocmd FileType javascript set softtabstop=2
-autocmd FileType xml set tabstop=2
-autocmd FileType xml set shiftwidth=2
-autocmd FileType xml set softtabstop=2
+autocmd FileType javascript set tabstop=4
+autocmd FileType javascript set shiftwidth=4
+autocmd FileType javascript set softtabstop=4
+autocmd FileType xml set tabstop=4
+autocmd FileType xml set shiftwidth=4
+autocmd FileType xml set softtabstop=4
 
 " Markdown
 autocmd FileType markdown set textwidth=80
