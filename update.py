@@ -13,12 +13,12 @@ SYSTEM = platform.system()
 DOTFILES = ['.gitconfig', '.gitignore', '.tmux.conf', '.pylintrc', '.pythonrc',
             '.vim', '.vimrc', '.zsh', '.zshrc', '.irbrc']
 
-# ['command name', 'install name']
+# ['command name', 'install name', 'linux command name']
 PACKAGES = [['cloc', 'cloc'],
             ['colordiff', 'colordiff'],
             ['cowsay', 'cowsay'],
             ['curl', 'curl'],
-            ['gist', 'gist'],
+            ['gist', 'gist', 'gist-paste'],
             ['git', 'git'],
             ['convert', 'imagemagick'],
             ['ssh-copy-id', 'ssh-copy-id'],
@@ -121,14 +121,19 @@ def get(packages, package_manager):
     # Skip packages that have already been installed.
     packages_to_install = []
     for package in packages:
-        path = os.path.join(HOME, 'Applications', package[0] + '.app')
-        if 'cask' in package_manager and os.path.islink(path):
-            pass
-        elif 'cask' in package_manager and not os.path.islink(path):
-            packages_to_install.append(package[1])
+        install_name = package[1]
+        if len(package) == 3:
+            name = package[len(package)-1]
         else:
-            if shutil.which(package[0]) == None:
-                packages_to_install.append(package[1])
+            name = package[0]
+
+        path = os.path.join(HOME, 'Applications', name + '.app')
+        if 'cask' in package_manager and not os.path.islink(path):
+            packages_to_install.append(install_name)
+        elif shutil.which(name) == None:
+            packages_to_install.append(install_name)
+        else:
+            pass # already installed
 
     if len(packages_to_install) > 0:
         # Install packages.
