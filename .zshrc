@@ -220,7 +220,7 @@ export PATH=$PATH:$HOME/.rvm/bin
 # Set the prompt!
 autoload colors && colors
 precmd() { PROMPT="%B%~%b$(git_super_status) " }
-RPROMPT="%{$fg_no_bold[black]%}%t%{$reset_color%}"
+RPROMPT="%{$fg_no_bold[black]%}%t [$(hostname)]%{$reset_color%}"
 
 # Enable Python interpreter tab-completion
 export PYTHONSTARTUP=~/.pythonrc
