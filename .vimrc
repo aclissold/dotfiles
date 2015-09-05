@@ -1,6 +1,9 @@
 " Enable Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
 
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
+set laststatus=2
+
 """"""""""""""""""
 " GLOBAL TOGGLES "
 """"""""""""""""""
