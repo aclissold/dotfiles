@@ -28,7 +28,6 @@ PACKAGES = [['cloc', 'cloc'],
             ['zsh', 'zsh']]
 
 CASKS = [['Skim', 'skim'],
-         ['Google Chrome', 'google-chrome'],
          ['Firefox', 'firefox'],
          ['Slate', 'slate'],
          ['Alfred 2', 'alfred'],
