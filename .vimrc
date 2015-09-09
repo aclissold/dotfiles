@@ -59,7 +59,7 @@ iabbrev sout System.out.println();<Left><Left>
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Close Vim if NERDTree is the only window left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 """"""""""""""""""""""""""""""
 " LANGUAGE-SPECIFIC SETTINGS "
@@ -88,9 +88,9 @@ syntax on
 
 " Ruby
 autocmd FileType ruby set omnifunc=syntaxcomplete#Complete
-autocmd Filetype ruby set tabstop=2
-autocmd Filetype ruby set shiftwidth=2
-autocmd Filetype ruby set softtabstop=2
+autocmd FileType ruby set tabstop=2
+autocmd FileType ruby set shiftwidth=2
+autocmd FileType ruby set softtabstop=2
 
 " Clojure (overtone)
 autocmd FileType clojure RainbowParenthesesToggle
