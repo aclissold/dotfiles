@@ -198,6 +198,7 @@ if [[ `uname` == 'Darwin' ]]; then
     export PATH=$M2:$PATH
     export XML_CATALOG_FILES=/usr/local/etc/xml/catalog # for asciidoc
     export FRAMEWORKS=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks
+    export PATH=$PATH:/usr/local/texlive/2015/bin/x86_64-darwin
 fi
 
 export GOROOT=/usr/local/go
