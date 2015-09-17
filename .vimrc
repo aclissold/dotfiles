@@ -37,11 +37,16 @@ set ruler
 " MISCELLANEOUS SETTINGS "
 """"""""""""""""""""""""""
 
+command! -nargs=0 Make
+            \ | execute ':silent !make'
+            \ | execute ':redraw!'
+
 " Keymappings
 let mapleader=","
 inoremap kk <Esc><Right>
 inoremap jj <Esc><Right>
 inoremap hh <Esc><Right>
+nnoremap <leader>m :w<CR> :Make<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>z :set spell!<CR>
 map <leader>b :RainbowParenthesesToggle<CR>
