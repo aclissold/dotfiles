@@ -4,7 +4,6 @@
     helper = cache --timeout=3600
 [core]
     autocrlf = input
-    safecrlf = true
     excludesfile = ~/.gitignore
 [alias]
     home = config user.email "andrewclissold@gmail.com"
