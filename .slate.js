@@ -17,7 +17,7 @@ function unZoom(win) {
         }));
     } else {
         win.doOperation(slate.operation("move", {
-            "x": "1.32*screenSizeX",
+            "x": "screenSizeX-0.125*screenSizeX",
             "y": "0.125*screenSizeY",
             "width": "0.75*screenSizeX",
             "height": "0.75*screenSizeY"
