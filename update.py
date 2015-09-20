@@ -91,6 +91,11 @@ def main():
     os.makedirs(os.path.join(HOME, '.vimundo'), exist_ok=True)
     os.makedirs(os.path.join(HOME, '.Trash'), exist_ok=True)
 
+    # Change login shell to zsh if necessary.
+    if 'bash' in os.environ['SHELL']:
+        print('Changing the login shell to zsh…')
+        run(['chsh', '-s', '/bin/zsh'])
+
 def run(command):
     """Execute a shell command, exiting if an error occurs."""
     if subprocess.call(command) != 0:
