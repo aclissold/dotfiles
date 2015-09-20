@@ -36,65 +36,79 @@ CASKS = [['Skim', 'skim'],
 if SYSTEM == 'Darwin':
     DOTFILES.append('.slate.js')
     PACKAGES.append(['cliclick', 'cliclick'])
-    PACKAGES.append(['reattach-to-user-namespace', 'reattach-to-user-namespace'])
+    PACKAGES.append(['reattach-to-user-namespace',
+                     'reattach-to-user-namespace'])
 else:
     DOTFILES.append('.fonts.conf')
     PACKAGES.append(['xclip', 'xclip'])
 
 def main():
     """Set up or synchronize dotfiles."""
-    # Abort if not run from the root of the repository.
+    validate_cwd()
+    run(['git', 'pull'])
+    run(['git', 'submodule', 'update', '--init'])
+    create_symlinks()
+    get_packages()
+    make_directories()
+    set_login_shell()
+
+# MARK: Main Functions
+
+def validate_cwd():
+    """Abort if not run from the root of the repository."""
     if os.getcwd() != os.path.join(HOME, '.dotfiles'):
         usage = ('Update failed. Please ensure that\n' +
                  '\t1) this repository exists at ~/.dotfiles, and\n' +
                  '\t2) this command is being executed from within that' +
                  'directory.')
-
         print(usage)
         exit(1)
 
-    # Merge in the latest changes, if any.
-    run(['git', 'pull'])
-
-    # Create symlinks for non-platform-specific dotfiles.
+def create_symlinks():
+    """Create symlinks to all dotfiles that don't yet have symlinks."""
     symlink(DOTFILES)
 
-    # Create symlinks for platform-specific dotfiles.
     if SYSTEM == 'Darwin':
         symlink(['.terminfodarwin'], '.terminfo')
         symlink(['.vimrc'], '.xvimrc')
     else:
         symlink(['.terminfolinux'], '.terminfo')
 
-    # Install commonly used packages.
+    symlink_xcode_colortheme()
+
+def symlink_xcode_colortheme():
+    """Symlink Xcode colortheme (special case)."""
+    if SYSTEM == 'Darwin':
+        symlink_path = os.path.join(HOME, 'Library', 'Developer', 'Xcode',
+                                    'UserData', 'FontAndColorThemes')
+        os.makedirs(symlink_path, exist_ok=True)
+        symlink_path = os.path.join(symlink_path, 'Lunarized.dvtcolortheme')
+        if not os.path.exists(symlink_path):
+            dotfile_path = os.path.join(HOME, '.dotfiles', '.vim', 'bundle',
+                                        'lunarized-syntax',
+                                        'Lunarized.dvtcolortheme')
+            os.symlink(dotfile_path, symlink_path)
+
+def get_packages():
+    """Install commonly used packages."""
     if SYSTEM == 'Darwin':
         get(PACKAGES, ['brew'])
         get(CASKS, ['brew', 'cask'])
     else:
         get(PACKAGES, ['sudo', 'apt-get'])
 
-    # Clone and/or update Vim and Zsh plugins.
-    run(['git', 'submodule', 'update', '--init'])
-
-    # Symlink Xcode colortheme (special case)
-    if SYSTEM == 'Darwin':
-        symlink_path = os.path.join(HOME, 'Library', 'Developer', 'Xcode',
-            'UserData', 'FontAndColorThemes')
-        os.makedirs(symlink_path, exist_ok=True)
-        symlink_path = os.path.join(symlink_path, 'Lunarized.dvtcolortheme')
-        if not os.path.exists(symlink_path):
-            dotfile_path = os.path.join(HOME, '.dotfiles', '.vim', 'bundle',
-                    'lunarized-syntax', 'Lunarized.dvtcolortheme')
-            os.symlink(dotfile_path, symlink_path)
-
-    # Ensure these directories exist.
-    os.makedirs(os.path.join(HOME, '.vimundo'), exist_ok=True)
-    os.makedirs(os.path.join(HOME, '.Trash'), exist_ok=True)
-
-    # Change login shell to zsh if necessary.
+def set_login_shell():
+    """Change login shell to zsh if necessary."""
     if 'bash' in os.environ['SHELL']:
         print('Changing the login shell to zsh…')
         run(['chsh', '-s', '/bin/zsh'])
+
+def make_directories():
+    """Ensure certain directories exist."""
+    os.makedirs(os.path.join(HOME, '.vimundo'), exist_ok=True)
+    os.makedirs(os.path.join(HOME, '.Trash'), exist_ok=True)
+
+# MARK: Helper Functions
 
 def run(command):
     """Execute a shell command, exiting if an error occurs."""
@@ -106,11 +120,11 @@ def symlink(dotfiles, symlink_name=None):
     for dotfile in dotfiles:
         # Construct paths.
         if symlink_name is not None:
-            symlink = symlink_name
+            link = symlink_name
         else:
-            symlink = dotfile
+            link = dotfile
         dotfile_path = os.path.join(HOME, '.dotfiles', dotfile)
-        symlink_path = os.path.join(HOME, symlink)
+        symlink_path = os.path.join(HOME, link)
 
         # Skip symlinks that have already been made.
         if os.path.islink(symlink_path):
@@ -118,7 +132,7 @@ def symlink(dotfiles, symlink_name=None):
 
         # Create the symlink.
         os.symlink(dotfile_path, symlink_path)
-        print('New symlink: ~/' + symlink)
+        print('New symlink: ~/' + link)
 
 def get(packages, package_manager):
     """Install packages using the system's package manager."""
