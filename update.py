@@ -14,13 +14,16 @@ DOTFILES = ['.gitconfig', '.gitignore', '.tmux.conf', '.pylintrc', '.pythonrc',
             '.vim', '.vimrc', '.zsh', '.zshrc', '.irbrc']
 
 # ['command name', 'install name', 'linux command name']
-PACKAGES = [['cloc', 'cloc'],
+PACKAGES = [['clang', 'clang'],
+            ['cloc', 'cloc'],
             ['colordiff', 'colordiff'],
             ['cowsay', 'cowsay'],
             ['curl', 'curl'],
             ['gist', 'gist', 'gist-paste'],
             ['git', 'git'],
             ['convert', 'imagemagick'],
+            ['indent', 'indent'],
+            ['make', 'make'],
             ['ssh-copy-id', 'ssh-copy-id'],
             ['tmux', 'tmux'],
             ['tree', 'tree'],
@@ -41,6 +44,7 @@ if SYSTEM == 'Darwin':
 else:
     DOTFILES.append('.fonts.conf')
     PACKAGES.append(['xclip', 'xclip'])
+    PACKAGES.append(['valgrind', 'valgrind'])
 
 def main():
     """Set up or synchronize dotfiles."""
