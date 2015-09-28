@@ -77,11 +77,10 @@ autocmd FileType gitcommit setlocal spell textwidth=72
 autocmd FileType python set textwidth=79
 
 " Use actual tabs in C
-autocmd FileType c set noexpandtab
+autocmd FileType c set noexpandtab tabstop=8 shiftwidth=8
 
 " Go
-autocmd FileType go set noexpandtab
-autocmd FileType go set textwidth=100
+autocmd FileType go set noexpandtab tabstop=8 shiftwidth=8
 if exists("g:did_load_filetypes")
     filetype off
     filetype plugin indent off
