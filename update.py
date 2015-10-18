@@ -30,12 +30,6 @@ PACKAGES = [['clang', 'clang'],
             ['vim', 'vim'],
             ['zsh', 'zsh']]
 
-CASKS = [['Skim', 'skim'],
-         ['Firefox', 'firefox'],
-         ['Slate', 'slate'],
-         ['Alfred 2', 'alfred'],
-         ['Spotify', 'spotify']]
-
 if SYSTEM == 'Darwin':
     DOTFILES.append('.slate.js')
     PACKAGES.append(['cliclick', 'cliclick'])
@@ -97,7 +91,6 @@ def get_packages():
     """Install commonly used packages."""
     if SYSTEM == 'Darwin':
         get(PACKAGES, ['brew'])
-        get(CASKS, ['brew', 'cask'])
     else:
         get(PACKAGES, ['sudo', 'apt-get'])
 
@@ -150,9 +143,7 @@ def get(packages, package_manager):
             name = package[0]
 
         path = os.path.join(HOME, 'Applications', name + '.app')
-        if 'cask' in package_manager and not os.path.islink(path):
-            packages_to_install.append(install_name)
-        elif shutil.which(name) == None:
+        if shutil.which(name) == None:
             packages_to_install.append(install_name)
         else:
             pass # already installed
