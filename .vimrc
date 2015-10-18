@@ -43,9 +43,8 @@ command! -nargs=0 Make
 
 " Keymappings
 let mapleader=","
-inoremap kk <Esc><Right>
-inoremap jj <Esc><Right>
-inoremap hh <Esc><Right>
+inoremap jk <Esc><Right>
+inoremap kj <Esc><Right>
 nnoremap <leader>m :w<CR> :Make<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>z :set spell!<CR>
