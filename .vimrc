@@ -21,9 +21,11 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
-" Persist undo
-set undofile
-set undodir=$HOME/.vimundo/
+" Persist undo history
+if has("undofile")
+    set undofile
+    set undodir=$HOME/.vimundo/
+endif
 
 " Turn the 'g' flag for :%s on by default
 set gdefault
