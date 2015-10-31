@@ -22,7 +22,7 @@ set expandtab
 set softtabstop=4
 
 " Persist undo history
-if has("undofile")
+if has('persistent_undo')
     set undofile
     set undodir=$HOME/.vimundo/
 endif
