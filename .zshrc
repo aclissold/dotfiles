@@ -53,6 +53,11 @@ if [[ `uname` == 'Darwin' ]]; then
     alias updatedb='sudo /usr/libexec/locate.updatedb'
 fi
 
+alias ao='ls'
+alias aoe='ls -l'
+alias aou='ls -a'
+alias aoeu='ls -la'
+
 # Staying up-to-date
 alias sag='sudo apt-get'
 if [[ `uname` == 'Darwin' ]]; then
